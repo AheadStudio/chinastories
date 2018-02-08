@@ -1,0 +1,398 @@
+/*** Settings ***/
+@import "nib"
+@import "../lib/css/css"
+
+global-reset();
+reset-html5();
+form-reset();
+b
+strong
+i
+em
+	font-style normal
+	font-weight normal
+
+$transitionAnimation = cubic-bezier(0.250, 0.460, 0.450, 0.940)
+$colorred = #BD1D1D
+
+/* fonts */
+@font-face
+	font-family "NarrowMedium"
+	src url("../fonts/Narrow.woff") format("woff")
+
+@font-face
+	font-family "PTM55F"
+	src url("../fonts/PTM55F.woff") format("woff")
+
+@font-face
+	font-family "PTMonoBold"
+	src url("../fonts/PTMono-Bold-01.woff") format("woff")
+
+@font-face
+	font-family "PTMonoRegular"
+	src url("../fonts/PTMono-Regular-02.woff") format("woff")
+
+@font-face
+	font-family "RistrettoProExtraLight"
+	src url("../fonts/RistrettoPro-ExtraLight.woff") format("woff")
+
+@font-face
+	font-family "RistrettoProMedium"
+	src url("../fonts/RistrettoPro-Medium.woff") format("woff")
+
+@font-face
+	font-family "RistrettoProSemiBold"
+	src url("../fonts/RistrettoPro-SemiBold.woff") format("woff")
+
+/* //fonts */
+
+html
+	height 100%
+body
+	position relative
+	width 100%
+	height 100%
+	min-height 100vh
+	line-height 1
+	cursor default
+
+	background #ccc
+
+	font-family "PTMonoRegular"
+
+	&.open-menu
+		position fixed
+		top 0
+		left 0
+		right 0
+		bottom 0
+		overflow hidden
+		height 100%
+		-webkit-overflow-scrolling touch
+
+/*** //Settings ***/
+
+
+/*** main style ***/
+.page
+	display block
+	width 100%
+
+	min-height 100%
+
+	margin 0 auto
+
+.page-inner
+	position relative
+	display block
+	margin 0 auto
+	box-sizing border-box
+
+	&--w0
+		max-width 1150px
+
+	&--w1
+		max-width 860px
+
+	&--w2
+		max-width 780px
+
+	&--w2
+		max-width 660px
+
+	&--max
+		min-width 100%
+
+/** button and link **/
+.link
+	text-decoration none
+	color #000
+
+.link--red
+	color $colorred
+
+.link--white
+	color #fff
+
+.link--red-bottom
+	display inline
+	box-shadow inset 0 1px #fff, inset 0 -1px $colorred
+	transition box-shadow 0.3s $transitionAnimation
+
+	&:hover
+		box-shadow inset 0 1px #fff, inset 0 -1px transparent
+
+.link--red-bottom-reverse
+	display inline
+	box-shadow inset 0 1px #fff, inset 0 -1px transparent
+	transition box-shadow 0.3s $transitionAnimation
+
+	&:hover
+		box-shadow inset 0 1px #fff, inset 0 -1px $colorred
+
+.link--black-bottom
+	display inline
+	box-shadow inset 0 1px #fff, inset 0 -1px #000
+	transition box-shadow 0.3s $transitionAnimation
+
+	&:hover
+		box-shadow inset 0 1px #fff, inset 0 -1px transparent
+
+.link--black-bottom-reverse
+	display inline
+	box-shadow inset 0 1px #fff, inset 0 -1px transparent
+	transition box-shadow 0.3s $transitionAnimation
+
+	&:hover
+		box-shadow inset 0 1px #fff, inset 0 -1px #000
+
+.button
+	position relative
+	display block
+	padding 5px
+
+	box-sizing border-box
+	text-align center
+
+	transition opacity 0.3s $transitionAnimation, transform 0.3s $transitionAnimation, color 0.3s $transitionAnimation, border 0.2s $transitionAnimation, background 0.3s $transitionAnimation
+
+	border-radius 5px
+
+	&--white
+		border 2px solid #fff
+		background transparent
+		color #fff
+
+		&:hover
+			border-color $colorred
+			background $colorred
+
+	&--white-left
+		border 2px solid #fff
+		background transparent
+		color #fff
+		overflow hidden
+
+		&:before
+			content ""
+			position absolute
+			top 0
+			left 0
+			bottom 0
+
+			display block
+			width 100%
+			height 100%
+			background $colorred
+
+			transform translateX(-100%)
+
+			transition transform 0.3s $transitionAnimation
+
+			z-index -100
+
+		&:hover
+			border 2px solid $colorred
+
+			&:before
+				transform translateX(0)
+
+	&--red
+		border 2px solid $colorred
+		background: transparent
+		color $colorred
+
+		&:hover
+			border-color #fff
+			background #fff
+
+	&--red-left
+		border 2px solid $colorred
+		background transparent
+		color $colorred
+		overflow hidden
+
+		&:before
+			content ""
+			position absolute
+			top 0
+			left 0
+			bottom 0
+
+			display block
+			width 100%
+			height 100%
+			background #fff
+
+			transform translateX(-100%)
+
+			transition transform 0.3s $transitionAnimation
+
+			z-index -100
+
+		&:hover
+			border 2px solid #fff
+
+			&:before
+				transform translateX(0)
+
+
+/** //button and link **/
+
+/** form **/
+/** //form **/
+
+/** header and footer **/
+.page-header
+	display flex
+	justify-content space-between
+
+	width 100%
+
+	padding 25px 35px 155px 30px
+	box-sizing border-box
+
+.header-burger
+	position relative
+	display block
+	width 30px
+	height 20px
+
+	cursor pointer
+
+	.header-burger-inner
+		position absolute
+		top 8.5px
+		left 0
+		right 0
+
+		display block
+		width 100%
+		height 2px
+		transition background-color 0.3s $transitionAnimation, transform 0.3s $transitionAnimation, opacity 0.3s $transitionAnimation
+
+	&:before
+		content ""
+
+		position absolute
+		top 0
+		left 0
+		right 0
+
+		display block
+		width 100%
+		height 2px
+
+		transition background-color 0.3s $transitionAnimation, transform 0.3s $transitionAnimation
+
+	&:after
+		content ""
+
+		position absolute
+		left 0
+		bottom 0
+		right 0
+
+		display block
+		width 100%
+		height 2px
+
+		transition background-color 0.3s $transitionAnimation, transform 0.3s $transitionAnimation
+
+	&--white
+		&:before
+		&:after
+		.header-burger-inner
+			background-color #fff
+
+	&--red
+		&:before
+		&:after
+		.header-burger-inner
+			background-color $colorred
+
+	&:hover
+		&:before
+		&:after
+		.header-burger-inner
+			background-color $colorred
+
+	&.active
+		&:before
+			transform translateY(9.5px) rotate(-40deg)
+
+		&:after
+			transform translateY(-8.5px) rotate(40deg)
+
+		.header-burger-inner
+			opacity 0
+
+.header-booking
+	width 100%
+	max-width 210px
+	height 45px
+	padding 11px 19px
+
+	margin-bottom 20px
+
+	text-transform uppercase
+
+	font-family "RistrettoProExtraLight"
+
+	font-size 22px
+
+	letter-spacing 2.5px
+
+.lang-bar
+	text-align center
+
+	.lang-bar-item
+		display inline-block
+		margin-right 10px
+
+		vertical-align top
+
+		box-sizing border-box
+
+		font-size 22px
+		font-family "RistrettoProExtraLight"
+
+		transition color 0.3s $transitionAnimation
+
+		&.delimiter
+			position relative
+			padding-right 18px
+
+			&:after
+				content "/"
+				position absolute
+				right 0
+				top 0
+				bottom 0
+
+				font-size 22px
+
+	&--white
+		.lang-bar-item
+			color #fff
+
+			&:hover
+				color $colorred
+
+			&.delimiter
+				&:after
+					color #fff
+
+	&--red
+		.lang-bar-item
+			color $colorred
+
+			&:hover
+				color #fff
+
+			&.delimiter
+				&:after
+					color $colorred
+
+
+/** //header and footer **/

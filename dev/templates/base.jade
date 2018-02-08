@@ -1,0 +1,104 @@
+include ../lib/html/html.jade
+doctype html
+<!--[if IE 7]><html lang="ru" prefix="og: http://ogp.me/ns#" class="ie8 no-js"><![endif]-->
+<!--[if IE 8]><html lang="ru" prefix="og: http://ogp.me/ns#" class="ie8 no-js"><![endif]-->
+<!--[if IE 9]><html lang="ru" prefix="og: http://ogp.me/ns#" class="ie9 no-js"><![endif]-->
+<!--[if !IE]><!-->
+html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
+	<!--<![endif]-->
+	head
+		+headerMeta({
+			charset: "utf-8",
+			keywords: info.keywords,
+			description: info.description,
+			title: info.title,
+			robots: "index, follow",
+			viewport: "width=device-width, initial-scale=1.0"
+		})
+		+openGraph({
+			type: "website",
+			siteName: info.siteName,
+			title: info.title,
+			description: info.description,
+			url: info.productionUrl,
+			image: info.image
+		})
+		+webIcons({
+			favicon: {
+				src: "/i/favicon.ico"
+			},
+			appleTouchIcon: [
+				{
+					src: "../i/icons/apple-touch-icon.jpg"
+				}, {
+					src: "../i/icons/apple-touch-icon-76.jpg",
+					size: "76x76"
+				}, {
+					src: "../i/icons/apple-touch-icon-140.jpg",	
+					size: "140x140"
+				}, {
+					src: "../i/icons/apple-touch-icon-152.jpg",
+					size: "152x152"
+				}
+			]
+		})
+		+addCSS([
+			{
+				media: "screen",
+				href: "../css/" + info.code + ".css",
+				noCache: true,
+			}, {
+				media: "screen",
+				href: "../css/" + info.code + ".responsive.css",
+				noCache: true
+			}
+		])
+
+	body(itemscope, itemtype="http://schema.org/WebPage", class=page.code)
+		
+		div(class="page")
+			header(class="page-header", itemscope, itemtype="http://schema.org/WPHeader")
+				div(class="header-holder")
+					div(class="header-burger", class=page.code === "home" ? "header-burger--white" : "header-burger--red")
+						span(class="header-burger-inner")
+							
+					if page.code != "home"
+						div(class="header-logo")
+							a(href="home.html", target="_blank")
+								img(src="../svg/logo_red.svg", alt="")
+							span(class="header-logo-title") Ресторан современной китайской кухни
+							
+				div(class="header-holder")
+					a(href="#", class="link button", class=page.code === "home" ? "button--white-left header-booking" : "button--red-left header-booking") забранировать стол
+					div(class="lang-bar", class=page.code === "home" ? "lang-bar--white" : "lang-bar--red")
+						a(href="#", class="link lang-bar-item delimiter") ru
+						a(href="#", class="link lang-bar-item delimiter") en
+						a(href="#", class="link lang-bar-item") cn
+
+			main(class="page-content")
+				block content
+
+		footer(class="page-footer", itemscope, itemtype="http://schema.org/WPFooter")
+			div(class="footer-holder")
+				div(class="footer-location", class=page.code === "home" ? "footer-location--white" : "footer-location--red") Владивосток, ул. светланская, 83,
+				a(href="tel:+7423255055", class="link footer-mobile", class=page.code === "home" ? "link--white footer-mobile" : "link--red footer-mobile") +7 423 255 0 55
+				
+			div(class="footer-holder")
+				div(class="footer-contacts", class=page.code === "home" ? "footer-contacts--white" : "footer-contacts--red")
+					div(class="footer-contacts-item")
+						include ../../prod/svg/fb.svg
+					div(class="footer-contacts-item")
+						include ../../prod/svg/inst.svg
+					div(class="footer-contacts-item")
+						include ../../prod/svg/youtube.svg
+					div(class="footer-contacts-item")
+						include ../../prod/svg/owl.svg
+
+
+		+addJS([
+			{
+				src: "../js/jquery-3.2.1.min.js"
+			}, {
+				src: "../js/" + info.code + ".js"
+			}
+		])
