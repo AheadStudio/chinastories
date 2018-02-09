@@ -45,6 +45,10 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 		+addCSS([
 			{
 				media: "screen",
+				href: "../css/plugins/slick.css",
+				noCache: true,
+			}, {
+				media: "screen",
 				href: "../css/" + info.code + ".css",
 				noCache: true,
 			}, {
@@ -54,22 +58,22 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 			}
 		])
 
-	body(itemscope, itemtype="http://schema.org/WebPage", class=page.code)
+	body(itemscope, itemtype="http://schema.org/WebPage", class=page.code+"-page")
 		
 		div(class="page")
 			header(class="page-header", itemscope, itemtype="http://schema.org/WPHeader")
-				div(class="header-holder")
+				div(class="header-holder  header-holder--fixed")
 					div(class="header-burger", class=page.code === "home" ? "header-burger--white" : "header-burger--red")
 						span(class="header-burger-inner")
 							
 					if page.code != "home"
 						div(class="header-logo")
-							a(href="home.html", target="_blank")
-								img(src="../svg/logo_red.svg", alt="")
+							a(href="home.html", target="_blank", class="header-logo-home")
+								include ../../prod/svg/logo_red.svg
 							span(class="header-logo-title") Ресторан современной китайской кухни
 							
 				div(class="header-holder")
-					a(href="#", class="link button", class=page.code === "home" ? "button--white-left header-booking" : "button--red-left header-booking") забранировать стол
+					a(href="#", class="link button", class=page.code === "home" ? "button--white-left header-booking" : "button--red-left header-booking") забронировать стол
 					div(class="lang-bar", class=page.code === "home" ? "lang-bar--white" : "lang-bar--red")
 						a(href="#", class="link lang-bar-item delimiter") ru
 						a(href="#", class="link lang-bar-item delimiter") en
@@ -77,27 +81,91 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 
 			main(class="page-content")
 				block content
-
+		
+		div(class="mobile-menu")
+			div(class="mobile-menu-background")
+			div(class="mobile-menu-container")
+				div(class="page-header")
+					div(class="header-holder")
+	
+					div(class="header-holder")
+						a(href="#", class="link button button--white-left header-booking") забронировать стол
+						div(class="lang-bar lang-bar--white")
+							a(href="#", class="link lang-bar-item delimiter") ru
+							a(href="#", class="link lang-bar-item delimiter") en
+							a(href="#", class="link lang-bar-item") cn
+				
+				div(class="mobile-menu-container-holder")
+					+menu({
+						rootClass: "mobile-menu-holder",
+						items: [
+							{
+								name: "О ресторане",
+								href: "about.html",
+								linkClass: "link link--white link--white-bottom",
+								title:"",
+							}, {
+								name: "КОМАНДА",
+								href: "team.html",
+								linkClass: "link link--white link--white-bottom",
+								title:"",
+							}, {
+								name: "Меню",
+								href: "menu.html",
+								linkClass: "link link--white link--white-bottom",
+								title:"",
+							}, {
+								name: "Новости",
+								href: "news.html",
+								linkClass: "link link--white link--white-bottom",
+								title:"",
+							}, {
+								name: "Контакты",
+								href: "contacts.html",
+								linkClass: "link link--white link--white-bottom",
+								title:"",
+							}, 
+						]
+					})
+					
+				div(class="page-footer")
+					div(class="footer-holder")
+						div(class="footer-location footer-location--white") Владивосток, ул. светланская, 83,
+						a(href="tel:+7423255055", class="link footer-mobile link--white footer-mobile") +7 423 255 0 55
+						
+					div(class="footer-holder")
+						div(class="footer-social")
+							a(href="#", class="link footer-social-item")
+								include ../../prod/svg/fb.svg 
+							a(href="#", class="link footer-social-item")
+								include ../../prod/svg/inst.svg 
+							a(href="#", class="link footer-social-item")
+								include ../../prod/svg/youtube.svg 
+							a(href="#", class="link footer-social-item")
+								include ../../prod/svg/owl.svg 
+	
 		footer(class="page-footer", itemscope, itemtype="http://schema.org/WPFooter")
 			div(class="footer-holder")
 				div(class="footer-location", class=page.code === "home" ? "footer-location--white" : "footer-location--red") Владивосток, ул. светланская, 83,
 				a(href="tel:+7423255055", class="link footer-mobile", class=page.code === "home" ? "link--white footer-mobile" : "link--red footer-mobile") +7 423 255 0 55
 				
 			div(class="footer-holder")
-				div(class="footer-contacts", class=page.code === "home" ? "footer-contacts--white" : "footer-contacts--red")
-					div(class="footer-contacts-item")
-						include ../../prod/svg/fb.svg
-					div(class="footer-contacts-item")
-						include ../../prod/svg/inst.svg
-					div(class="footer-contacts-item")
-						include ../../prod/svg/youtube.svg
-					div(class="footer-contacts-item")
-						include ../../prod/svg/owl.svg
+				div(class="footer-social", class=page.code === "home" ? "" : "footer-social--red")
+					a(href="#", class="link footer-social-item")
+						include ../../prod/svg/fb.svg 
+					a(href="#", class="link footer-social-item")
+						include ../../prod/svg/inst.svg 
+					a(href="#", class="link footer-social-item")
+						include ../../prod/svg/youtube.svg 
+					a(href="#", class="link footer-social-item")
+						include ../../prod/svg/owl.svg 
 
 
 		+addJS([
 			{
 				src: "../js/jquery-3.2.1.min.js"
+			}, {
+				src: "../js/plugins/slick.min.js"
 			}, {
 				src: "../js/" + info.code + ".js"
 			}

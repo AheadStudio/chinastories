@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 87.02 87.02"><defs><clipPath id="clip-path" transform="translate(0 0)"><rect width="87.01" height="86.94" fill="none"/></clipPath></defs><title>Ресурс 2</title><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><g clip-path="url(#clip-path)"><path d="M87,14.5C87,6.88,80.14,0,72.52,0h-58C6.88,0,0,6.88,0,14.5v58C0,80.14,6.88,87,14.5,87h29V54.15H32.87V39.64H43.51V34c0-9.75,7.32-18.52,16.32-18.52H71.55V30H59.83C58.54,30,57,31.53,57,33.87v5.78h14.5v14.5H57V87H72.52C80.14,87,87,80.14,87,72.52Z" transform="translate(0 0)" fill="#fff"/></g></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 87.02 87.02">
+  <defs>
+    <clipPath id="clip-path" transform="translate(0 0)">
+      <rect width="87.01" height="86.94" fill="none"/>
+    </clipPath>
+  </defs>
+  <title>fb</title>
+  <g id="Слой_2" data-name="Слой 2">
+    <g id="Слой_1-2" data-name="Слой 1">
+      <g clip-path="url(#clip-path)">
+        <path d="M87,14.5C87,6.88,80.14,0,72.52,0h-58C6.88,0,0,6.88,0,14.5v58C0,80.14,6.88,87,14.5,87h29V54.15H32.87V39.64H43.51V34c0-9.74,7.32-18.52,16.32-18.52H71.55V30H59.83c-1.29,0-2.78,1.55-2.78,3.89v5.77h14.5V54.15H57.05V87H72.52C80.14,87,87,80.14,87,72.52Z" transform="translate(0 0)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

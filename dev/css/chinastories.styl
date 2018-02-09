@@ -37,28 +37,86 @@ $colorred = #BD1D1D
 	src url("../fonts/RistrettoPro-ExtraLight.woff") format("woff")
 
 @font-face
+	font-family "RistrettoProRegular"
+	src url("../fonts/Ristrettopro-regular.woff") format("woff")
+
+@font-face
 	font-family "RistrettoProMedium"
 	src url("../fonts/RistrettoPro-Medium.woff") format("woff")
 
 @font-face
 	font-family "RistrettoProSemiBold"
 	src url("../fonts/RistrettoPro-SemiBold.woff") format("woff")
-
 /* //fonts */
+
+/** animation **/
+@keyframes beforeBurger
+	0%
+		top 0px
+		transform rotate(0)
+	25%
+		top 9px
+		transform rotate(0)
+	75%
+		top 9px
+		transform rotate(45deg)
+	100%
+		top 9px
+		transform rotate(45deg)
+
+@keyframes afterBurger
+	0%
+		bottom 0px
+		transform rotate(0)
+	25%
+		bottom 9px
+		transform rotate(0)
+	75%
+		bottom 9px
+		transform rotate(-45deg)
+	100%
+		bottom 9px
+		transform rotate(-45deg)
+
+@keyframes beforeBurgerInit
+	0%
+		top 9px
+		transform rotate(45deg)
+	25%
+		top 9px
+		transform rotate(0deg)
+	75%
+		top 0px
+		transform rotate(0deg)
+	100%
+		top 0px
+		transform rotate(0deg)
+
+@keyframes afterBurgerInit
+	0%
+		bottom 9px
+		transform rotate(45deg)
+	25%
+		bottom 9px
+		transform rotate(0deg)
+	75%
+		bottom 0px
+		transform rotate(0deg)
+	100%
+		bottom 0px
+		transform rotate(0deg)
+/** //animation **/
 
 html
 	height 100%
 body
 	position relative
 	width 100%
-	height 100%
-	min-height 100vh
+	min-height 100%
 	line-height 1
 	cursor default
-
-	background #ccc
-
 	font-family "PTMonoRegular"
+
 
 	&.open-menu
 		position fixed
@@ -69,7 +127,6 @@ body
 		overflow hidden
 		height 100%
 		-webkit-overflow-scrolling touch
-
 /*** //Settings ***/
 
 
@@ -82,6 +139,8 @@ body
 
 	margin 0 auto
 
+	margin-bottom 155px
+
 .page-inner
 	position relative
 	display block
@@ -89,19 +148,27 @@ body
 	box-sizing border-box
 
 	&--w0
-		max-width 1150px
+		max-width 1300px
+		padding 0 80px
+		box-sizing border-box
 
 	&--w1
-		max-width 860px
+		max-width 1150px
 
 	&--w2
+		max-width 900px
+
+	&--w3
 		max-width 780px
 
-	&--w2
+	&--w4
 		max-width 660px
 
 	&--max
 		min-width 100%
+
+	&--top
+		margin-top 50px
 
 /** button and link **/
 .link
@@ -130,6 +197,14 @@ body
 	&:hover
 		box-shadow inset 0 1px #fff, inset 0 -1px $colorred
 
+.link--white-bottom
+	display inline
+	box-shadow inset 0 1px transparent, inset 0 -1px transparent
+	transition box-shadow 0.3s $transitionAnimation
+
+	&:hover
+		box-shadow inset 0 1px transparent, inset 0 -1px #fff
+
 .link--black-bottom
 	display inline
 	box-shadow inset 0 1px #fff, inset 0 -1px #000
@@ -154,7 +229,7 @@ body
 	box-sizing border-box
 	text-align center
 
-	transition opacity 0.3s $transitionAnimation, transform 0.3s $transitionAnimation, color 0.3s $transitionAnimation, border 0.2s $transitionAnimation, background 0.3s $transitionAnimation
+	transition opacity 0.3s $transitionAnimation, transform 0.5s $transitionAnimation, border 0.2s $transitionAnimation, background 0.3s $transitionAnimation
 
 	border-radius 5px
 
@@ -183,16 +258,17 @@ body
 			display block
 			width 100%
 			height 100%
-			background $colorred
+			background #fff
 
 			transform translateX(-100%)
 
-			transition transform 0.3s $transitionAnimation
+			transition transform 0.4s $transitionAnimation
 
-			z-index -100
+			z-index -1
 
 		&:hover
-			border 2px solid $colorred
+			border 2px solid #fff
+			color $colorred
 
 			&:before
 				transform translateX(0)
@@ -222,16 +298,17 @@ body
 			display block
 			width 100%
 			height 100%
-			background #fff
+			background $colorred
 
 			transform translateX(-100%)
 
-			transition transform 0.3s $transitionAnimation
+			transition transform 0.4s $transitionAnimation
 
-			z-index -100
+			z-index -1
 
 		&:hover
-			border 2px solid #fff
+			border 2px solid $colorred
+			color #fff
 
 			&:before
 				transform translateX(0)
@@ -249,8 +326,15 @@ body
 
 	width 100%
 
-	padding 25px 35px 155px 30px
+	padding 25px 35px 90px 30px
 	box-sizing border-box
+
+.header-holder
+	position relative
+	z-index 200
+
+	&--fixed
+		z-index 501
 
 .header-burger
 	position relative
@@ -259,6 +343,8 @@ body
 	height 20px
 
 	cursor pointer
+
+	transition transform 0.3s $transitionAnimation
 
 	.header-burger-inner
 		position absolute
@@ -283,7 +369,7 @@ body
 		width 100%
 		height 2px
 
-		transition background-color 0.3s $transitionAnimation, transform 0.3s $transitionAnimation
+		transition background-color 0.3s $transitionAnimation
 
 	&:after
 		content ""
@@ -297,7 +383,7 @@ body
 		width 100%
 		height 2px
 
-		transition background-color 0.3s $transitionAnimation, transform 0.3s $transitionAnimation
+		transition background-color 0.3s $transitionAnimation
 
 	&--white
 		&:before
@@ -318,14 +404,58 @@ body
 			background-color $colorred
 
 	&.active
+		z-index 100
+
 		&:before
-			transform translateY(9.5px) rotate(-40deg)
+			animation beforeBurger 0.5s $transitionAnimation forwards
 
 		&:after
-			transform translateY(-8.5px) rotate(40deg)
+			animation afterBurger 0.5s $transitionAnimation forwards
 
 		.header-burger-inner
-			opacity 0
+			transform scale(0)
+
+		&--hover
+			&:hover
+				transform rotate(90deg)
+
+				&:before
+				&:after
+				.header-burger-inner
+					background-color #fff
+	&.close
+		&:before
+			animation beforeBurgerInit 0.5s $transitionAnimation forwards
+
+		&:after
+			animation afterBurgerInit 0.5s $transitionAnimation forwards
+
+		.header-burger-inner
+			transform scale(1)
+
+.header-logo
+	position absolute
+	top 45px
+	left 0
+
+	.header-logo-home
+		display block
+		width 130px
+		margin-bottom 17px
+
+		svg
+			display block
+			width 100%
+			height 100%
+
+	.header-logo-title
+		padding-right 20px
+		box-sizing border-box
+
+		font-size 24px
+		font-family "RistrettoProRegular"
+
+		color $colorred
 
 .header-booking
 	width 100%
@@ -337,11 +467,13 @@ body
 
 	text-transform uppercase
 
-	font-family "RistrettoProExtraLight"
+	font-family "RistrettoProRegular"
 
 	font-size 22px
 
 	letter-spacing 2.5px
+
+	z-index 100
 
 .lang-bar
 	text-align center
@@ -355,7 +487,7 @@ body
 		box-sizing border-box
 
 		font-size 22px
-		font-family "RistrettoProExtraLight"
+		font-family "RistrettoProRegular"
 
 		transition color 0.3s $transitionAnimation
 
@@ -388,11 +520,330 @@ body
 			color $colorred
 
 			&:hover
-				color #fff
+				font-weight 600
 
 			&.delimiter
 				&:after
+					font-weight 300
 					color $colorred
 
+.page-footer
+	display flex
+	justify-content space-between
+	align-content center
+
+	width 100%
+
+	padding 0 35px 35px 30px
+	box-sizing border-box
+
+	.footer-location
+		display inline-block
+		padding-right 5px
+		box-sizing border-box
+		vertical-align top
+
+		font-size 22px
+		font-family "RistrettoProRegular"
+
+		text-transform uppercase
+
+		letter-spacing 2.5px
+
+		&--red
+			color $colorred
+
+		&--white
+			color #fff
+
+	.footer-mobile
+		font-size 22px
+		font-family "RistrettoProRegular"
+		letter-spacing 2.5px
+		&--red
+			color $colorred
+
+		&--white
+			color #fff
+
+	.footer-social
+		display flex
+		justify-content space-between
+
+		.footer-social-item
+			display block
+			margin-right 15px
+			max-width 40px
+			height 25px
+
+			&:last-child
+				margin-right 0
+
+			svg
+				display block
+				width 100%
+				height 100%
+
+				path
+					transition fill 0.3s $transitionAnimation
+
+			&:hover
+				svg
+					path:not([fill=none])
+						fill $colorred
+
+		&--red
+			.footer-social-item
+				svg
+					path:not([fill=none])
+						fill $colorred
+
+				&:hover
+					svg
+						path:not([fill=none])
+							fill #000
+.footer-holder
+	position relative
+	z-index 200
 
 /** //header and footer **/
+
+/** page text **/
+.page-text
+	h1
+		margin-bottom 50px
+
+		line-height 1
+		font-family "NarrowMedium"
+		font-size 72px
+
+		letter-spacing 4px
+
+		text-transform uppercase
+
+		color $colorred
+
+	p
+		line-height 28px
+		margin-bottom 15px
+		font-size 18px
+		max-width 660px
+
+	.content-slider-container
+		position relative
+
+		.content-slider-arrows
+			position absolute
+			top 50%
+			transform translateY(-50%)
+			display block
+			width 100%
+
+			.slick-arrow
+				position absolute
+
+				display block
+				width 35px
+				height 35px
+
+				padding 5px
+				box-sizing border-box
+
+				border 2px solid $colorred
+
+				border-radius 5px
+
+				transition background 0.3s $transitionAnimation
+
+				cursor pointer
+
+				&-prev
+					left -60px
+
+				&-next
+					right -60px
+
+				svg
+					display block
+					width 100%
+					height 100%
+
+					path
+						transition fill 0.3s $transitionAnimation
+
+				&:hover
+					background $colorred
+
+					svg
+						path
+							fill #fff
+
+
+	.content-slider
+		display block
+
+		.content-slider-item
+			width 100%
+
+			img
+				display block
+				width 100%
+
+/** //page text **/
+
+/** mobile menu **/
+body.open-menu
+	.lang-bar--white
+		.lang-bar-item
+			&:hover
+				color #000
+
+	.header-burger--red
+		&:before
+		&:after
+		.header-burger-inner
+			background #fff
+	.header-logo
+		opacity 0
+
+.mobile-menu
+	position fixed
+	left 0
+	right 0
+	top 0
+	bottom 0
+
+	display none
+
+	z-index 500
+
+	.mobile-menu-background
+		position fixed
+		top 0px
+		right 0
+		left 0
+		bottom 0
+		display block
+		width 100%
+		height 100%
+
+		background $colorred
+
+		transform translateY(-100%)
+
+		opacity 0
+
+		transition transform 0.6s $transitionAnimation, opacity 0.3s $transitionAnimation
+		transition-delay 0.3s
+
+	&.active-block
+		display block
+		overflow-y auto
+
+		.mobile-menu-container
+			.mobile-menu-container-holder
+				display block
+
+	&.active-show
+
+		.mobile-menu-background
+			transform translateY(0)
+			opacity 1
+			transition-delay 0s
+
+		.mobile-menu-container
+			.mobile-menu-container-holder
+				transform translateY(0)
+				opacity 1
+
+				transition-delay 0.4s
+
+	.mobile-menu-container
+		.mobile-menu-container-holder
+			position relative
+			display none
+
+			padding-left 150px
+			box-sizing border-box
+
+			transform translateX(-50px)
+
+			transition transform 0.3s $transitionAnimation, opacity 0.3s $transitionAnimation
+			transition-delay 0s
+
+			opacity 0
+
+		.page-footer
+			position absolute
+			bottom 0
+
+.mobile-menu-holder
+	.mobile-menu-holder-item-holder
+		margin-bottom 50px
+
+		.mobile-menu-holder-item
+			line-height 1
+			letter-spacing 4px
+			font-size 72px
+			font-family  "NarrowMedium"
+
+/** //mobile menu **/
+
+/*** //main style ***/
+
+/*** page home ***/
+.presentation
+	.presentation-logo
+		width 100%
+		max-width 180px
+		margin 0 auto 25px auto
+
+	.presentation-title
+		display block
+		width 100%
+		max-width 420px
+
+		margin 0 auto
+
+		text-align center
+		line-height 65px
+
+		color #fff
+
+body.home-page
+	height 100%
+	min-height 100vh
+
+	background-image url("../dummy/main.png")
+	background-repeat no-repeat
+	background-size cover
+	background-position center
+	z-index -20
+
+	&:after
+		content ""
+		position fixed
+		top 0
+		left 0
+		right 0
+		bottom 0
+
+		display block
+		width 100%
+		min-height 100%
+
+		background rgba(#000000, 0.7)
+
+		z-index -10
+
+	.page-footer
+		margin-top -60px
+
+	.page
+		margin-bottom 0
+
+/*** //page home ***/
+
+
+/*** about home ***/
+/*** //about home ***/
