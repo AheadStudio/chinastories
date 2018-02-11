@@ -631,6 +631,8 @@ body
 
 	.content-slider-container
 		position relative
+		margin-top 80px
+		margin-bottom 80px
 
 		.content-slider-arrows
 			position absolute
@@ -648,6 +650,8 @@ body
 
 				padding 5px
 				box-sizing border-box
+
+				background-color #fff
 
 				border 2px solid $colorred
 
@@ -678,12 +682,37 @@ body
 						path
 							fill #fff
 
+			&--max
+				.slick-arrow-prev
+					left 50px
+				.slick-arrow-next
+					right 50px
 
 	.content-slider
 		display block
 
 		.content-slider-item
 			width 100%
+
+			.content-slider-img-container
+				display flex
+
+				&-w1
+					width 40%
+					img
+						display block
+						width 100%
+						height 100%
+						object-fit cover
+
+				&-w2
+					width 60%
+
+					img
+						display block
+						width 100%
+						height 100%
+						object-fit cover
 
 			img
 				display block
@@ -776,6 +805,17 @@ body.open-menu
 		.page-footer
 			position absolute
 			bottom 0
+
+			.footer-social
+				.footer-social-item
+					svg
+						path:not([fill=none])
+							fill #fff
+
+					&:hover
+						svg
+							path:not([fill=none])
+								fill #000
 
 .mobile-menu-holder
 	.mobile-menu-holder-item-holder
