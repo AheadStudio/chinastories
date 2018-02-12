@@ -16,6 +16,7 @@ $transitionAnimation = cubic-bezier(0.250, 0.460, 0.450, 0.940)
 $colorred = #BD1D1D
 
 /* fonts */
+
 @font-face
 	font-family "NarrowMedium"
 	src url("../fonts/Narrow.woff") format("woff")
@@ -47,9 +48,11 @@ $colorred = #BD1D1D
 @font-face
 	font-family "RistrettoProSemiBold"
 	src url("../fonts/RistrettoPro-SemiBold.woff") format("woff")
+
 /* //fonts */
 
 /** animation **/
+
 @keyframes beforeBurger
 	0%
 		top 0px
@@ -127,6 +130,7 @@ body
 		overflow hidden
 		height 100%
 		-webkit-overflow-scrolling touch
+
 /*** //Settings ***/
 
 
@@ -167,10 +171,18 @@ body
 	&--max
 		min-width 100%
 
+	&--max30
+		max-width 100%
+		padding 0 30px
+		box-sizing border-box
+
 	&--top
 		margin-top 50px
 
+	&--nopadding
+		padding 0
 /** button and link **/
+
 .link
 	text-decoration none
 	color #000
@@ -204,6 +216,14 @@ body
 
 	&:hover
 		box-shadow inset 0 1px transparent, inset 0 -1px #fff
+
+.link--white-bottom-reverse
+	display inline
+	box-shadow inset 0 1px transparent, inset 0 -1px #fff
+	transition box-shadow 0.3s $transitionAnimation
+
+	&:hover
+		box-shadow inset 0 1px transparent, inset 0 -1px transparent
 
 .link--black-bottom
 	display inline
@@ -313,13 +333,173 @@ body
 			&:before
 				transform translateX(0)
 
-
 /** //button and link **/
 
 /** form **/
+.form-container
+	.form
+		max-width 100%
+
+	.form-icon
+		display block
+		width 65px
+		margin 0 auto 20px auto
+
+.form
+	display block
+	max-width 540px
+
+	.form-title
+		margin-bottom 40px
+
+		letter-spacing 3px
+
+		font-size 56px
+		font-family "NarrowMedium"
+
+		color $colorred
+
+		&--big
+			font-size 72px
+			margin-bottom 30px
+			text-align center
+.form-row
+	display flex
+	justify-content space-between
+	align-items center
+
+	margin-bottom 45px
+
+	&-w25
+		width 25%
+
+	&-w65
+		width 65%
+
+	&-w80
+		width 80%
+
+	&-w100
+		width 100%
+
+	.form-label
+		display block
+		margin-bottom 15px
+
+		cursor pointer
+
+		.form-label-text
+			font-size 18px
+
+	.button
+		max-width 230px
+
+		padding 17px 43px
+
+		letter-spacing 2px
+
+		font-weight bold
+		font-size 20px
+
+		text-transform uppercase
+
+
+	.form-holder
+		position relative
+
+		label.error
+			position absolute
+			display block
+			bottom -20px
+
+			font-size 14px
+			color $colorred
+
+		.jcf-select-form-item--select
+			position relative
+			display block
+			width 100%
+			padding 15px 25px
+			box-sizing border-box
+
+			border 2px solid $colorred
+			border-radius 5px
+
+			font-size 18px
+			font-family "PTMonoRegular"
+
+			background #fff
+
+			.jcf-select-opener
+				position absolute
+				top 54%
+				right 15px
+				display block
+				width 20px
+				height 11px
+
+				background-image url("../svg/arrow_form_bottom.svg")
+				background-size contain
+				background-repeat no-repeat
+
+				transform translateY(-50%)
+
+.jcf-select-form-item--select
+	&.jcf-select-drop
+		.jcf-select-drop-content
+			padding 15px 25px
+			box-sizing border-box
+
+			border 2px solid $colorred
+			border-radius 5px
+
+			background #fff
+		.jcf-list-content
+			ul
+				li
+					margin-bottom 15px
+					transition color 0.3s $transitionAnimation
+					cursor pointer
+					
+					&:last-child
+						margin-bottom 0
+
+					&:hover
+						color $colorred
+.form-item
+	display block
+	width 100%
+	padding 15px 25px
+	box-sizing border-box
+
+	border 2px solid $colorred
+	border-radius 5px
+
+	font-size 18px
+	font-family "PTMonoRegular"
+
+	color #202020
+
+	background #fff
+
+	&--textarea
+		resize none
+
+	&--number
+	 	-moz-appearance textfield
+		&::-webkit-inner-spin-button
+		&::-webkit-outer-spin-button
+			-webkit-appearance none
+			margin 0
+
+	&.error
+		background-color #ecc7c7
+
+
 /** //form **/
 
 /** header and footer **/
+
 .page-header
 	display flex
 	justify-content space-between
@@ -435,7 +615,7 @@ body
 
 .header-logo
 	position absolute
-	top 45px
+	top 43px
 	left 0
 
 	.header-logo-home
@@ -609,7 +789,51 @@ body
 /** //header and footer **/
 
 /** page text **/
+
+.load
+	position relative
+	width 100%
+	height 45px
+	text-align center
+
+	.load-more
+		position absolute
+
+		left 50%
+		margin-left -25px
+
+		display block
+		width 45px
+		height 45px
+
+		cursor pointer
+
+		transition transform 0.3s $transitionAnimation
+
+		&:hover
+			transform rotate(360deg)
+
+		&:before
+			content ""
+			position absolute
+			width 100%
+			height 100%
+			top 0
+			left 0
+			background-image url(../svg/circle-arrow.svg)
+			background-repeat no-repeat
+			background-size cover
+
+		&.loading
+			animation-name spin
+			animation-duration 300ms
+			animation-iteration-count infinite
+			animation-timing-function linear
+
 .page-text
+	font-size 18px
+	line-height 28px
+
 	h1
 		margin-bottom 50px
 
@@ -693,6 +917,7 @@ body
 
 		.content-slider-item
 			width 100%
+			cursor pointer
 
 			.content-slider-img-container
 				display flex
@@ -718,9 +943,39 @@ body
 				display block
 				width 100%
 
+	figure
+		width 100%
+		margin 70px 0 70px 0
+
+		img
+			display block
+			width 100%
+
+	.date-text
+		margin-top 55px
+		margin-bottom 40px
+
+		font-size 16px
+
+	.backward
+		font-size 16px
+		display inline-block
+		margin-top 70px
+
+	dl
+		display grid
+		grid-template-columns 1fr 1fr
+		grid-gap 10px 0
+
+		dt
+			font-size 18px
+		dd
+			font-family "PTMonoBold"
+
 /** //page text **/
 
 /** mobile menu **/
+
 body.open-menu
 	.lang-bar--white
 		.lang-bar-item
@@ -770,8 +1025,7 @@ body.open-menu
 		overflow-y auto
 
 		.mobile-menu-container
-			.mobile-menu-container-holder
-				display block
+			display block
 
 	&.active-show
 
@@ -781,26 +1035,27 @@ body.open-menu
 			transition-delay 0s
 
 		.mobile-menu-container
-			.mobile-menu-container-holder
-				transform translateY(0)
-				opacity 1
+			transform translateY(0)
+			opacity 1
 
-				transition-delay 0.4s
+			transition-delay 0.4s
 
 	.mobile-menu-container
+		display none
+		height 100%
+
+		transform translateX(-50px)
+
+		transition transform 0.3s $transitionAnimation, opacity 0.3s $transitionAnimation
+		transition-delay 0s
+
+		opacity 0
+
 		.mobile-menu-container-holder
 			position relative
-			display none
 
 			padding-left 150px
 			box-sizing border-box
-
-			transform translateX(-50px)
-
-			transition transform 0.3s $transitionAnimation, opacity 0.3s $transitionAnimation
-			transition-delay 0s
-
-			opacity 0
 
 		.page-footer
 			position absolute
@@ -831,7 +1086,10 @@ body.open-menu
 
 /*** //main style ***/
 
+
+
 /*** page home ***/
+
 .presentation
 	.presentation-logo
 		width 100%
@@ -885,5 +1143,250 @@ body.home-page
 /*** //page home ***/
 
 
-/*** about home ***/
-/*** //about home ***/
+/*** team ***/
+
+.chefs
+	margin-top 120px
+
+	.chefs-holder
+		display flex
+		justify-content space-between
+		align-items center
+
+		margin-bottom 140px
+
+		&--reverse
+			flex-flow row-reverse
+
+			.chefs-container-info
+				padding-left 0
+				padding-right 5%
+
+
+	.chefs-container-img
+		max-width 70%
+
+		img
+			display block
+			width 100%
+
+	.chefs-container-info
+		max-width 30%
+		padding-left 5%
+		box-sizing border-box
+
+		.chefs-name
+			margin-bottom 35px
+
+			letter-spacing 3.5px
+
+			font-size 54px
+			font-family "NarrowMedium"
+
+			color $colorred
+
+		.chefs-position
+			margin-bottom 45px
+			font-size 18px
+			text-transform lowercase
+
+		.chefs-desc
+			line-height 28px
+			font-size 18px
+
+/*** //team ***/
+
+
+/*** menu ***/
+
+.menu
+	display grid
+	grid-template-columns 1fr 1fr 1fr
+	grid-template-rows minmax(auto, 610px)
+	grid-gap 0 6%
+
+	margin-top 80px
+
+.menu-item
+	position relative
+	display block
+
+	overflow hidden
+
+	&:after
+		content ""
+		position absolute
+		top 0
+		left 0
+		right 0
+		bottom 0
+
+		display block
+		width 100%
+		height 100%
+
+		background-color rgba(0, 0, 0, 0.65)
+
+		z-index 100
+
+		transition transform 0.6s $transitionAnimation, opacity 0.3s $transitionAnimation
+
+	&:before
+		content ""
+		position absolute
+		top 0
+		left 0
+		right 0
+		bottom 0
+
+		display block
+		width 100%
+		height 100%
+
+		background-color rgba(255, 255, 255, 0.65)
+
+		transform translateY(-100%)
+
+		z-index 200
+
+		transition transform 0.6s $transitionAnimation, opacity 0.3s $transitionAnimation
+
+	.menu-img
+		position absolute
+		top 0
+		left 0
+		bottom 0
+		right 0
+
+		display block
+		width 100%
+		height 100%
+
+		object-fit cover
+
+	.menu-name
+		position absolute
+		top 50%
+		left 50%
+
+		display inline-block
+
+		padding-bottom 1px
+
+		transform translate(-50%, -50%)
+
+		font-size 70px
+		font-family "NarrowMedium"
+
+		letter-spacing 4px
+
+		text-transform uppercase
+
+		z-index 200
+
+		color #fff
+
+		border-bottom 1px solid #fff
+
+		transition border-bottom 0.3s $transitionAnimation, color  0.3s $transitionAnimation
+
+	&:hover
+
+		&:before
+			transform translateY(0)
+
+		&:after
+			transform scale(0)
+
+		.menu-name
+			border-bottom-color $colorred
+			color $colorred
+
+/*** //menu ***/
+
+/*** news ***/
+
+.news
+	margin-top 75px
+
+.news-holder
+	margin-bottom 90px
+
+.news-item
+	display flex
+	justify-content space-between
+	align-items flex-start
+
+	margin-bottom 140px
+
+	transition transform 0.3s $transitionAnimation
+
+	.news-item-container-img
+		max-width 47%
+
+		img
+			display block
+			width 100%
+
+	.news-item-container-info
+		width 53%
+		padding-left 5%
+		box-sizing border-box
+
+		.news-item-title
+			margin-bottom 25px
+
+			letter-spacing 3.5px
+
+			font-size 56px
+			font-family "NarrowMedium"
+
+			color $colorred
+
+		.news-item-date
+			margin-bottom 30px
+
+		.news-item-text
+			margin-bottom 30px
+			line-height 28px
+
+	&:last-child
+		margin-bottom 0
+
+	&.load-events-item
+		opacity 0
+		transform translateY(100px)
+
+/*** //news ***/
+
+
+/*** contacts ***/
+.contacts
+	display grid
+	grid-template-columns 1fr 1fr
+
+.contacts-location
+	.contacts-city
+		font-size 18px
+		margin-bottom 20px
+
+	.contacts-street
+		font-size 18px
+		margin-bottom 20px
+
+	.contacts-mobile
+		font-size 18px
+
+.contacts-mode
+	.contacts-mode-text
+		margin-bottom 15px
+		font-size 18px
+
+.map-container
+	margin-top 90px
+	margin-bottom 105px
+	height 680px
+
+	.map
+		height 100%
+/*** //contacts ***/

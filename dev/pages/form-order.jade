@@ -1,0 +1,30 @@
+extends ../templates/base
+
+block content
+    div(class="page-inner page-inner--w4 page-inner--top")
+        div(class="form-container", id="step-form")
+            form(class="form", action="#", data-success="form-success.html")
+                div(class="form-icon")
+                    include ../../prod/svg/booking.svg
+                div(class="form-title form-title--big") Забронировать стол  
+                
+                div(class="form-steps", data-formstep="1")
+                    span(class="form-step-text", data-steptext="Шаг {1}/2")
+                    div(class="form-step form-step--1")
+                        div(class="form-row")
+                            div(class="form-row-w65")
+                                label(for="date", class="form-label")
+                                    span(class="form-label-text") Выберите дату
+                                div(class="form-holder")
+                                    select(id="date", name="date", class="form-item form-item--select", required, data-error="Укажите дату", aria-required="true")
+                                        option(selected="selected") Понедельник, 13 ноября
+                                        option() Вторник, 14 ноября
+                                        option() Среда, 15 ноября
+                                        option() Четверг, 16 ноября
+                                        option() Пятница, 17 ноября
+                                        option() Суббота, 18 ноября
+                            div(class="form-row-w25")
+                                label(for="persons", class="form-label")
+                                    span(class="form-label-text") Кол-во персон
+                                div(class="form-holder")
+                                    input(type="number", id="persons", name="persons", min="1" max="5", step="1" class="form-item form-item--number", required, data-error="Укажите кол-во персон", aria-required="true")

@@ -1,3 +1,51 @@
 extends ../templates/base
 
 block content
+    div(class="page-inner page-inner--w2 page-inner--top")
+        div(class="page-text")
+            h1 Контакты
+            
+    div(class="page-inner page-inner--w2 page-inner--top")
+        div(class="contacts")
+            div(class="contacts-location")
+                div(class="contacts-city") Владивосток
+                div(class="contacts-street") ул. Светланская, 83,
+                a(href="tel:+7232550555", class="link link-black contacts-mobile") +7 423 255 0 55
+            div(class="contacts-mode")
+                div(class="contacts-mode-text") Режим работы:
+                div(class="page-text")
+                    dl
+                        dt Вс / Пн / Вт / Ср
+                        dd 12:00 - 00:00
+                        dt Чт / Пт / Сб /
+                        dd 12:00 - 02:00
+                        
+    div(class="page-inner page-inner--w1")
+        div(class="map-container")
+            div(class="map", data-lat="43.115311", data-lng="131.902958", data-zoom="17", data-icon="../i/point_map.png") 
+    
+
+    div(class="page-inner page-inner--w2")
+        form(class="form", action="#", method="post")
+            div(class="form-title") Обратная связь
+            div(class="form-row")
+                div(class="form-row-w100")
+                    label(for="name", class="form-label")
+                        span(class="form-label-text") Представьтесь
+                    div(class="form-holder")
+                        input(type="text", id="name", name="name", class="form-item form-item--input", required, data-error="Укажите Ваше имя", aria-required="true")
+            div(class="form-row")
+                div(class="form-row-w100")
+                    label(for="mobile", class="form-label")
+                        span(class="form-label-text") Ваш e-mail
+                    div(class="form-holder")
+                        input(type="email", id="mobile", name="mobile", class="form-item form-item--input", required, data-error="Укажите Ваш e-mail", aria-required="true")
+            div(class="form-row")
+                div(class="form-row-w100")
+                    label(for="message", class="form-label")
+                        span(class="form-label-text") Ваше сообщение
+                    div(class="form-holder")
+                        textarea(id="message", name="message", class="form-item form-item--textarea", required, data-error="Ваш отзыв?", aria-required="true", rows="7")
+            div(class="form-row form-row--button")
+                div(class="form-row-w100")
+                    button(type="submit", class="button button--red-left") Отправить

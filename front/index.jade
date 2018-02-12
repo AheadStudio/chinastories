@@ -83,35 +83,34 @@ html(lang="ru")
 									a(href="docs.html", class="link")
 										b Документация по проекту
 
-			// Расчет прогресса
-			//if pages
-				- var progress = 0, progressCount = 0;
+			if pages
+				- var progressDesktop = 0, progressTablet = 0, progressMobile = 0, progressCount = 0;
 				each page in pages
 					if page.progress
-						- progress += Number(page.progress);
+						- progressDesktop += Number(page.progress.desktop);
+						- progressTablet += Number(page.progress.tablet);
+						- progressMobile += Number(page.progress.mobile);
 						- progressCount++;
 
-				- progress = Math.round(Number(progress / progressCount));
-
-				if progress < 20
-					- lineClass = "default";
-				else if progress < 50
-					- lineClass = "warning";
-				else if progress < 80
-					- lineClass = "primary";
-				else if progress < 90
-					- lineClass = "primary";
-				else if progress < 100
-					- lineClass = "success";
-				else if progress == 100
-					- lineClass = "success";
-				h3 
-					| Общий прогресс 
-					span(class="label label-#{lineClass}") #{progress}%
-
+				- progressDesktop = Math.round(Number(progressDesktop / progressCount));
+				- progressTablet = Math.round(Number(progressTablet / progressCount));
+				- progressMobile = Math.round(Number(progressMobile / progressCount));
+				//h3 
+					| Прогресс работ 
+				h4 Десктоп
 				div.progress
-					div(class="progress-bar progress-bar-#{lineClass}", role="progressbar", aria-valuenow="#{progress}", aria-valuemin="0", aria-valuemax="100", style="width: #{progress}%")
-			
+					div(class="progress-bar progress-bar-success", role="progressbar", aria-valuenow="#{progressDesktop}", aria-valuemin="0", aria-valuemax="100", style="width: #{progressDesktop}%")
+						b #{progressDesktop}%
+
+				h4 Планшет
+				div.progress
+					div(class="progress-bar progress-bar-info", role="progressbar", aria-valuenow="#{progressTablet}", aria-valuemin="0", aria-valuemax="100", style="width: #{progressTablet}%")
+						b #{progressTablet}%
+
+				h4 Мобильный
+				div.progress
+					div(class="progress-bar progress-bar-danger", role="progressbar", aria-valuenow="#{progressMobile}", aria-valuemin="0", aria-valuemax="100", style="width: #{progressMobile}%")
+						b #{progressMobile}%			
 			//br
 			h3 Сверстанные страницы
 			table(class="table table-striped")
