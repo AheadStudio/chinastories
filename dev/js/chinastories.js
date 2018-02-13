@@ -453,20 +453,45 @@
 
 					firstInit: true,
 
-					stepFormFontainer: $(".form-steps"),
+					stepFormFontainer: "",
 
-					step: $(".form-steps").data("formstep"),
+					step: "",
 
-					stepText: $(".form-step-text"),
+					stepText: "",
 
-					resultForm: $(".form-result-info"),
+					resultForm: "",
 
-					resultFormText:  $(".form-result-info").data("formresult"),
+					resultFormText: "",
+
+					resultFormTmpl: "",
+
+					finalText: "",
 
 					init: function(form) {
 						var self = this;
 
 						self.form = form;
+
+						self.activeFormItem = false;
+
+						self.firstInit = true;
+
+						self.stepFormFontainer = $(".form-steps", self.form);
+
+						self.step = $(".form-steps", self.form).data("formstep");
+
+						self.stepText = $(".form-step-text", self.form);
+
+						self.resultForm = $(".form-result-info", self.form);
+
+						self.resultFormText = self.resultForm.data("formresult");
+
+						self.resultFormTmpl = self.resultForm.data("formrestmpl");
+
+						self.finalText = self.resultForm.data("finaltext");
+
+
+
 
 						setTimeout(function() {
 							self.stepFormFontainer.removeClass("preload");
@@ -573,6 +598,7 @@
 
 					wathChanges: function() {
 						var self = this;
+							self.finalText = self.resultFormTmpl;
 
 						self.activeFormItem.each(function() {
 							(function(elementsForm) {
@@ -584,14 +610,46 @@
 
 									self.resultForm.attr("data-formresult", JSON.stringify(self.resultFormText));
 
-									if ($(this).hasClass("form-item--select") || $(this).hasClass("form-item--number")) {
-										jcf.refresh($(this));
+									if (el.hasClass("form-item--select") || el.hasClass("form-item--number")) {
+										jcf.refresh(el);
 									}
+
+
+									/*for (var key in self.resultFormText) {
+										if (self.resultFormText[key] !== "") {
+											if (self.resultFormTmpl.indexOf(key) !== -1) {
+												intermediateText = self.resultFormTmpl.replace("{"+key+"}",self.resultFormText[key]);
+											}
+										}
+									}*/
+									self.finalText = self.finalText.replace("{"+idEL+"}",self.resultFormText[idEL]);
+
+									self.resultForm.text(self.finalText);
+
 								});
 							})($(this))
-						})
+						});
+
 					}
 
+				},
+
+				modalWindow: function() {
+					$(".open-form[data-lazymodal]").lazyModal({
+						type: "ajax",
+						bcgcolor: "#BD1D1D",
+						init: function(obj) {
+							obj.options.htmlContent = $("#step-form", obj.options.htmlContent);
+						},
+						afterImplant: function(obj) {
+							CHINASTORIES.forms.init();
+						},
+						customclass: "form-step-container",
+						btnclosetml: '<button data-lazymodal-close class="lazy-modal-close">'+
+										'<span class="form-close"></span>'+
+									 '</button>',
+						positionclose: "outside",
+					});
 
 				}
 
@@ -606,6 +664,7 @@
 	CHINASTORIES.mobileMenu.init();
 	CHINASTORIES.sliders.init();
 	CHINASTORIES.maps.init();
+	CHINASTORIES.forms.modalWindow();
 	CHINASTORIES.forms.init();
 	CHINASTORIES.ajaxLoader();
 

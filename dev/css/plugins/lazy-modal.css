@@ -1,0 +1,102 @@
+.lazy-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 11000;
+}
+.lazy-modal-background {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 12000;
+    opacity: 0;
+    -webkit-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -moz-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -o-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -ms-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.lazy-modal.lazy-modal--show .lazy-modal-background {
+    opacity: 1;
+}
+.lazy-modal-scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 100%;
+    z-index: 13000;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+}
+.lazy-modal-area-close{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    z-index: 13500;
+}
+.lazy-modal-container {
+    position: relative;
+    display: block;
+    padding: 30px 20px 10px 20px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    background: #fff;
+    opacity: 0;
+    max-width: 100%;
+    -webkit-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -moz-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -o-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -ms-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 14000;
+}
+.lazy-modal.lazy-modal--show .lazy-modal-container {
+    transition-delay: 2s;
+    opacity: 1;
+}
+.lazy-modal-container--left {
+    -webkit-transform: translateX(-200px);
+    -moz-transform: translateX(-200px);
+    -o-transform: translateX(-200px);
+    -ms-transform: translateX(-200px);
+    transform: translateX(-200px);
+}
+.lazy-modal-close {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 20px;
+    top: 20px;
+    z-index: 14000;
+    pointer-events: auto;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.lazy-modal-close:hover {
+    transform: rotate(90deg);
+}
+.lazy-modal-close svg {
+    width: 100%;
+    height: 100%;
+}
+.lazy-modal-element {
+    cursor: pointer;
+}
+body.open-lazy-modal {
+    /*position: fixed;*/
+    /*overflow: hidden;*/
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+}

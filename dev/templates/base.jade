@@ -49,6 +49,10 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 				noCache: true,
 			}, {
 				media: "screen",
+				href: "../css/plugins/lazy-modal.css",
+				noCache: true,
+			}, {
+				media: "screen",
 				href: "../css/" + info.code + ".css",
 				noCache: true,
 			}, {
@@ -73,7 +77,7 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 							span(class="header-logo-title") Ресторан современной китайской кухни
 							
 				div(class="header-holder")
-					a(href="#", class="link button", class=page.code === "home" ? "button--white-left header-booking" : "button--red-left header-booking") забронировать стол
+					a(href="#", class="link button open-form", data-lazymodal="form-order.html", class=page.code === "home" ? "button--white-left header-booking" : "button--red-left header-booking") забронировать стол
 					div(class="lang-bar", class=page.code === "home" ? "lang-bar--white" : "lang-bar--red")
 						a(href="#", class="link lang-bar-item delimiter") ru
 						a(href="#", class="link lang-bar-item delimiter") en
@@ -89,7 +93,7 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 					div(class="header-holder")
 	
 					div(class="header-holder")
-						a(href="#", class="link button button--white-left header-booking") забронировать стол
+						a(href="#", data-lazymodal="form-order.html", class="link button button--white-left header-booking open-form") забронировать стол
 						div(class="lang-bar lang-bar--white")
 							a(href="#", class="link lang-bar-item delimiter") ru
 							a(href="#", class="link lang-bar-item delimiter") en
@@ -180,6 +184,8 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 				src: "../js/plugins/jquery.mask.min.js"
 			}, {
 				src: "../js/plugins/jquery.validate.min.js"
+			}, {
+				src: "../js/plugins/jquery.lazy-modal.js"
 			}, {
 				src: "../js/" + info.code + ".js"
 			}
