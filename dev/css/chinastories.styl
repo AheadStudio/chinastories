@@ -243,7 +243,7 @@ body
 
 .button
 	position relative
-	display block
+	display inline-block
 	padding 5px
 
 	box-sizing border-box
@@ -373,14 +373,32 @@ body
 	&-w25
 		width 25%
 
+	&-w30
+		width 30%
+
+	&-w40
+		width 40%
+
+	&-w60
+		width 60%
+
 	&-w65
 		width 65%
+
+	&-w70
+		width 70%
 
 	&-w80
 		width 80%
 
 	&-w100
 		width 100%
+
+	&--relative
+		position relative
+
+	&--button
+		margin-top 55px
 
 	.form-label
 		display block
@@ -392,7 +410,7 @@ body
 			font-size 18px
 
 	.button
-		max-width 230px
+		max-width 100%
 
 		padding 17px 43px
 
@@ -419,6 +437,7 @@ body
 			position relative
 			display block
 			width 100%
+			min-height 52px
 			padding 15px 25px
 			box-sizing border-box
 
@@ -429,6 +448,8 @@ body
 			font-family "PTMonoRegular"
 
 			background #fff
+
+			cursor pointer
 
 			.jcf-select-opener
 				position absolute
@@ -443,29 +464,183 @@ body
 				background-repeat no-repeat
 
 				transform translateY(-50%)
+				transition background-image 0.3s $transitionAnimation
+
+			.jcf-select-text
+				color #202020
+
+			&.jcf-drop-active
+			&:hover
+				.jcf-select-opener
+					background-image url("../svg/arrow_form_bottom_red.svg")
+
+			&.jcf-select-error
+				background-color #ecc7c7
 
 .jcf-select-form-item--select
 	&.jcf-select-drop
-		.jcf-select-drop-content
-			padding 15px 25px
-			box-sizing border-box
+		z-index 200
 
+		.jcf-select-drop-content
 			border 2px solid $colorred
 			border-radius 5px
 
 			background #fff
+
+			.jcf-list
+				display block
+				padding 15px 10px 15px 25px
+				box-sizing border-box
+
+			.jcf-list-content
+				display block
+
+			.jcf-scrollbar-vertical
+				display block
+				top 0
+				right 0
+				bottom 0
+
+				.jcf-scrollbar-slider
+					width 5px
+					height 100%
+
+					.jcf-scrollbar-handle
+						width 100%
+						max-height 100%
+
+						border-radius 5px
+						background-color #cecece
+
 		.jcf-list-content
 			ul
 				li
-					margin-bottom 15px
 					transition color 0.3s $transitionAnimation
 					cursor pointer
-					
+
+					color #202020
+
 					&:last-child
 						margin-bottom 0
 
 					&:hover
 						color $colorred
+
+					.jcf-option
+						display block
+
+						padding 10px 0
+						box-sizing border-box
+
+						&-hideme
+							display none
+.jcf-number
+	display flex
+	justify-content space-between
+
+	.jcf-btn-inc
+		position relative
+		display block
+		width 33%
+		order 3
+
+
+		border 2px solid #bd1d1d
+		border-top-right-radius 5px
+		border-bottom-right-radius 5px
+		border-left none
+
+		background #fff
+
+		cursor pointer
+
+		&:before
+			position absolute
+			top 50%
+			left 50%
+
+			content ""
+			display block
+			width 15px
+			height 2px
+
+			margin-top -1px
+			margin-left -7.5px
+
+			background-color #000
+
+			transition background-color 0.3s $transitionAnimation
+
+		&:after
+			position absolute
+			top 50%
+			left 50%
+
+			content ""
+			display block
+			width 2px
+			height 15px
+
+			margin-top -7.5px
+			margin-left -1px
+
+			background-color #000
+
+			transition background-color 0.3s $transitionAnimation
+
+		&:hover
+			&:after
+			&:before
+				background-color $colorred
+
+	.form-item
+		width 33%
+		order 2
+		padding 15px
+		text-align center
+		border-radius 0
+
+	.jcf-btn-dec
+		position relative
+		display block
+		width 33%
+		order 1
+
+		border 2px solid #bd1d1d
+		border-top-left-radius 5px
+		border-bottom-left-radius 5px
+		border-right none
+
+		background #fff
+
+		cursor pointer
+
+		&:before
+			position absolute
+			top 50%
+			left 50%
+
+			content ""
+			display block
+			width 15px
+			height 2px
+
+			margin-top -1px
+			margin-left -7.5px
+
+			background-color #000
+
+			transition background-color 0.3s $transitionAnimation
+
+		&:hover
+			&:before
+				background-color $colorred
+.form-row
+	.form-holder
+		.jcf-number
+			label.error
+				bottom -35px
+
 .form-item
 	display block
 	width 100%
@@ -494,6 +669,69 @@ body
 
 	&.error
 		background-color #ecc7c7
+
+
+/* style for form step */
+.form-steps
+	transition transform 0.5s $transitionAnimation, opacity 0.3s $transitionAnimation
+
+	&.preload
+		opacity 0
+		transform translateY(50px)
+
+	.form-step-text
+		display block
+
+		&--center
+			text-align center
+
+	.form-step
+		margin-top 60px
+
+		transition transform 0.3s $transitionAnimation, opacity 0.3s $transitionAnimation
+
+		&.hide-show
+			opacity 0
+			transform translateY(-10px)
+
+		&.disabled
+			display none
+
+		.form-back
+			display block
+			text-align center
+
+			.form-back-item
+				font-size 18px
+
+	.form-result
+		display block
+		margin 45px 0
+
+		.form-result-text
+			display block
+			margin-bottom 25px
+			color #000
+
+		.form-result-info
+			display block
+			color $colorred
+
+	.privacy-policy
+		width 50%
+		padding-top 8px
+		box-sizing border-box
+
+		float right
+		vertical-align top
+
+		font-size 14px
+		line-height 18px
+
+/* //style for form step */
+
+
+
 
 
 /** //form **/

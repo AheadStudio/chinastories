@@ -8,8 +8,9 @@ block content
                     include ../../prod/svg/booking.svg
                 div(class="form-title form-title--big") Забронировать стол  
                 
-                div(class="form-steps", data-formstep="1")
-                    span(class="form-step-text", data-steptext="Шаг {1}/2")
+                div(class="form-steps preload", data-formstep="1")
+                    span(class="form-step-text form-step-text--center", data-steptext="Шаг {1}/2")
+                    
                     div(class="form-step form-step--1")
                         div(class="form-row")
                             div(class="form-row-w65")
@@ -17,14 +18,79 @@ block content
                                     span(class="form-label-text") Выберите дату
                                 div(class="form-holder")
                                     select(id="date", name="date", class="form-item form-item--select", required, data-error="Укажите дату", aria-required="true")
-                                        option(selected="selected") Понедельник, 13 ноября
-                                        option() Вторник, 14 ноября
-                                        option() Среда, 15 ноября
-                                        option() Четверг, 16 ноября
-                                        option() Пятница, 17 ноября
-                                        option() Суббота, 18 ноября
+                                        option(class="hideme", value="")
+                                        option(value="Понедельник, 13 ноября") Понедельник, 13 ноября
+                                        option(value="Вторник, 14 ноября") Вторник, 14 ноября
+                                        option(value="Среда, 15 ноября") Среда, 15 ноября
+                                        option(value="Четверг, 16 ноября") Четверг, 16 ноября
+                                        option(value="Пятница, 17 ноября") Пятница, 17 ноября
+                                        option(value="Суббота, 18 ноября") Суббота, 18 ноября
+                                        option(value="Четверг, 16 ноября") Четверг, 16 ноября
+                                        option(value="Пятница, 17 ноября") Пятница, 17 ноября
+                                        option(value="Суббота, 18 ноября") Суббота, 18 ноября
                             div(class="form-row-w25")
                                 label(for="persons", class="form-label")
                                     span(class="form-label-text") Кол-во персон
                                 div(class="form-holder")
                                     input(type="number", id="persons", name="persons", min="1" max="5", step="1" class="form-item form-item--number", required, data-error="Укажите кол-во персон", aria-required="true")
+                        
+                        div(class="form-row")
+                            div(class="form-row-w65")
+                                label(for="time", class="form-label")
+                                    span(class="form-label-text") Укажите время
+                                div(class="form-holder")
+                                    select(id="time", name="time", class="form-item form-item--select", required, data-error="Укажите время", aria-required="true")
+                                        option(class="hideme", value="")
+                                        option(value="7:00") 7:00
+                                        option(value="8:00") 8:00
+                                        option(value="9:00") 9:00
+                                        option(value="10:00") 10:00
+                                        option(value="11:00") 11:00
+                                        option(value="12:00") 12:00
+                                        option(value="13:00") 13:00
+                                        option(value="14:00") 14:00
+                                        option(value="15:00") 15:00
+                                        option(value="16:00") 16:00
+                                        option(value="17:00") 17:00
+                                        option(value="18:00") 18:00
+                                        option(value="19:00") 19:00
+                                        option(value="20:00") 20:00
+                                        option(value="21:00") 21:00
+                                        option(value="22:00") 22:00
+                        
+                        div(class="form-row")
+                            div(class="form-row-w100")
+                                label(for="message", class="form-label")
+                                    span(class="form-label-text") Ваше сообщение
+                                div(class="form-holder")
+                                    textarea(id="message", name="message", class="form-item form-item--textarea", required, data-error="Ваш отзыв?", aria-required="true", rows="7")
+                        
+                        div(class="form-row form-row--button")
+                            div(class="form-row-w30")
+                                button(type="button", class="button button--red-left", data-nextstep="2") Далее
+                            div(class="form-row-w70")
+                                span(class="form-step-text", data-steptext="Шаг {1}/2")
+                    
+                    div(class="form-step form-step--2")
+                        div(class="form-back")
+                            a(href="#", class="link link-black link--black-bottom form-back-item", data-prevstep="1") Назад
+                        div(class="form-result")
+                            span(class="form-result-text") Ваше пронирование
+                            span(class="form-result-info", data-formresult='{"date": "", "persons": "", "time": "", "message": ""}') 
+                        div(class="form-row")
+                            div(class="form-row-w65")
+                                label(for="name", class="form-label")
+                                    span(class="form-label-text") Имя гостя
+                                div(class="form-holder")
+                                    input(type="text", id="name", name="name", class="form-item form-item--input", required, data-error="Укажите имя гостя", aria-required="true")
+                        div(class="form-row")
+                            div(class="form-row-w65")
+                                label(for="mobile", class="form-label")
+                                    span(class="form-label-text") Телефон
+                                div(class="form-holder")
+                                    input(type="text", id="mobile", name="mobile", class="form-item form-item--input", required, data-error="Укажите телефон", aria-required="true", data-pattern="mobileRU", data-number="+7 (000) 000-00-00")
+                        div(class="form-row form-row--button")
+                            div(class="form-row-w100 form-row--relative")
+                                button(type="submit", class="button button--red-left") Забронировать
+                                span(class="privacy-policy") При нажатии кнопки &#171;Забронировать&#187; вы соглашаетесь с условиями&ensp;
+                                    a(href="#",class="link link--red link--red-bottom-reverse") пользовательского соглашения

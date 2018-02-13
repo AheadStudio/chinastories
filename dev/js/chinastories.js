@@ -322,6 +322,7 @@
 			},
 
 			forms: {
+
 				init: function($form) {
 					var self = this;
 
@@ -330,8 +331,12 @@
 					}
 
 					self.dataMobile();
-					self.validateForm($form);
-					self.replaceStandatrInputs($form);
+					self.validateForm();
+					self.replaceStandartInputs($form);
+					self.reloadJcf($(".form"));
+
+					// step form initialization
+					self.stepForm.init($(".form"));
 
 				},
 
@@ -343,7 +348,7 @@
 					});
 				},
 
-				validateForm: function($form) {
+				validateForm: function() {
 					var self = this;
 
 					$(".form", $sel.body).each(function() {
@@ -356,10 +361,24 @@
 								}
 							};
 
+						$.validator.addMethod("mobileRU", function(phone_number, element) {
+							phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
+							return this.optional(element) || phone_number.length > 5 && phone_number.match(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{6,10}$/);
+						}, "Error");
 
 						$formFields.each(function() {
-							var $field = $(this);
-							formParams.messages[$field.attr("name")] = $field.data("error");
+							var $field = $(this),
+								fieldPattern = $field.data("pattern"),
+								fieldError = $field.data("error");
+							if(fieldError) {
+								formParams.messages[$field.attr("name")] = $field.data("error");
+							} else {
+								formParams.messages[$field.attr("name")] = "Ошибка заполнения";
+							}
+							if(fieldPattern) {
+								formParams.rules[$field.attr("name")] = {};
+								formParams.rules[$field.attr("name")][fieldPattern] = true;
+							}
 						});
 
 						if($form.data("success")) {
@@ -385,17 +404,18 @@
 					});
 				},
 
-				replaceStandatrInputs: function($form) {
+				replaceStandartInputs: function($form) {
 					var $selects = $("select", $form),
 						$numbers = $("input[type=number]", $form);
 
 					jcf.setOptions("Select", {
 						wrapNative: false,
-						wrapNativeOnMobile: false
+						wrapNativeOnMobile: false,
+						maxVisibleItems: 6,
 					});
 
 					jcf.setOptions("Number", {
-						pressInterval: "50",
+						pressInterval: "150",
 						disabledClass: "jcf-disabled"
 					});
 
@@ -411,7 +431,170 @@
 					});
 
 
+				},
+
+				reloadJcf: function($form) {
+					$form.submit(function(event) {
+						var form = $(event.target),
+							$formItems = $form.find(".form-item");
+
+						$formItems.each(function() {
+							(function(el) {
+								jcf.refresh(el);
+							})($(this))
+						});
+					});
+				},
+
+				stepForm: {
+					form: false,
+
+					activeFormItem: false,
+
+					firstInit: true,
+
+					stepFormFontainer: $(".form-steps"),
+
+					step: $(".form-steps").data("formstep"),
+
+					stepText: $(".form-step-text"),
+
+					resultForm: $(".form-result-info"),
+
+					resultFormText:  $(".form-result-info").data("formresult"),
+
+					init: function(form) {
+						var self = this;
+
+						self.form = form;
+
+						setTimeout(function() {
+							self.stepFormFontainer.removeClass("preload");
+						}, 300);
+
+						self.setStep();
+						self.changeStep(form);
+					},
+
+					setStep: function() {
+						var self = this,
+							$allFormStep = $(".form-step:not(.form-step--"+self.step+")", self.stepFormFontainer),
+							$activeFormStep = $(".form-step--"+self.step, self.stepFormFontainer);
+
+						if (self.firstInit) {
+							$allFormStep.each(function() {
+								(function(el) {
+									el.addClass("disabled");
+								})($(this));
+							});
+
+							self.firstInit = false;
+						} else {
+							$allFormStep.each(function() {
+								(function(el) {
+									el.addClass("hide-show");
+
+									setTimeout(function() {
+										el.addClass("disabled");
+									}, 300);
+
+								})($(this));
+							});
+
+							$activeFormStep.removeClass("disabled");
+							setTimeout(function() {
+								$activeFormStep.removeClass("hide-show");
+							}, 400);
+
+						}
+
+						self.stepText.each(function() {
+							(function(el) {
+								var elText = el.data("steptext"),
+									changeText = elText.replace(/\{\w*\}/, self.step);
+									changeTextData = elText.replace(/\{\w*\}/, "{"+self.step+"}");
+
+								el.text(changeText);
+								el.attr("data-steptext", changeTextData);
+
+							})($(this));
+						});
+
+						(function(activeForm) {
+							self.activeFormItem = activeForm.find(".form-item");
+							self.wathChanges();
+						})($activeFormStep);
+
+					},
+
+					changeStep: function() {
+						var self = this,
+							$buttonStepNext = $("[data-nextstep]"),
+							$buttonStepPrev = $("[data-prevstep]");
+
+						$buttonStepNext.each(function() {
+							(function(el) {
+								el.on("click", function(e) {
+									var button = $(this),
+										buttonStepNumber = button.data("nextstep");
+
+									self.step = buttonStepNumber;
+
+									if (self.form.valid()) {
+										self.setStep();
+									} else {
+										self.activeFormItem.each(function() {
+											if ($(this).hasClass("form-item--select") || $(this).hasClass("form-item--number")) {
+												(function(el) {
+													jcf.refresh(el);
+												})($(this))
+											}
+										});
+									}
+
+								});
+							})($(this))
+						})
+						$buttonStepPrev.each(function() {
+							(function(el) {
+								el.on("click", function(e) {
+									var button = $(this),
+										buttonStepNumber = button.data("prevstep");
+
+									self.step = buttonStepNumber;
+									self.setStep();
+									e.preventDefault();
+								});
+
+							})($(this))
+						})
+
+					},
+
+					wathChanges: function() {
+						var self = this;
+
+						self.activeFormItem.each(function() {
+							(function(elementsForm) {
+								elementsForm.on("change", function() {
+									var el = $(this),
+										idEL = el.attr("id");
+
+									self.resultFormText[idEL] = el.val();
+
+									self.resultForm.attr("data-formresult", JSON.stringify(self.resultFormText));
+
+									if ($(this).hasClass("form-item--select") || $(this).hasClass("form-item--number")) {
+										jcf.refresh($(this));
+									}
+								});
+							})($(this))
+						})
+					}
+
+
 				}
+
 			},
 
 
