@@ -115,11 +115,13 @@ html
 body
 	position relative
 	width 100%
-	min-height 100%
+	height 100%
+	min-height 100vh
 	line-height 1
 	cursor default
 	font-family "PTMonoRegular"
 
+	transition background-size 3s $transitionAnimation
 
 	&.open-menu
 		position fixed
@@ -203,11 +205,11 @@ body
 
 .link--red-bottom-reverse
 	display inline
-	box-shadow inset 0 1px #fff, inset 0 -1px transparent
+	box-shadow inset 0 1px transparent, inset 0 -1px transparent
 	transition box-shadow 0.3s $transitionAnimation
 
 	&:hover
-		box-shadow inset 0 1px #fff, inset 0 -1px $colorred
+		box-shadow inset 0 1px transparent, inset 0 -1px $colorred
 
 .link--white-bottom
 	display inline
@@ -227,19 +229,19 @@ body
 
 .link--black-bottom
 	display inline
-	box-shadow inset 0 1px #fff, inset 0 -1px #000
+	box-shadow inset 0 1px transparent, inset 0 -1px #000
 	transition box-shadow 0.3s $transitionAnimation
 
 	&:hover
-		box-shadow inset 0 1px #fff, inset 0 -1px transparent
+		box-shadow inset 0 1px transparent, inset 0 -1px transparent
 
 .link--black-bottom-reverse
 	display inline
-	box-shadow inset 0 1px #fff, inset 0 -1px transparent
+	box-shadow inset 0 1px transparent, inset 0 -1px transparent
 	transition box-shadow 0.3s $transitionAnimation
 
 	&:hover
-		box-shadow inset 0 1px #fff, inset 0 -1px #000
+		box-shadow inset 0 1px transparent, inset 0 -1px #000
 
 .button
 	position relative
@@ -479,7 +481,7 @@ body
 
 .jcf-select-form-item--select
 	&.jcf-select-drop
-		z-index 200
+		z-index 200000
 
 		.jcf-select-drop-content
 			border 2px solid $colorred
@@ -731,13 +733,98 @@ body
 
 .form-step-container
 	.lazy-modal-container
-		max-width 620px
+		max-width 680px
+		background-color $colorred
 
 	.lazy-modal-close
 		width 20px
 		height 20px
 		right 35px
 		top 35px
+
+	.form-container
+		.form-icon
+			svg
+				path
+					fill #fff
+
+	.form
+		.form-title
+			color #fff
+
+	.form-steps
+		.form-step-text
+			color #fff
+
+		.form-result
+			.form-result-text
+				color #fff
+
+			.form-result-info
+				color #000
+
+		.privacy-policy
+			.link
+				color #fff
+				box-shadow inset 0 1px transparent, inset 0 -1px transparent
+				transition box-shadow 0.3s $transitionAnimation
+
+				&:hover
+					box-shadow inset 0 1px transparent, inset 0 -1px #fff
+
+
+	.form-row
+		.form-label
+			.form-label-text
+				color #fff
+
+		.button
+			border-color #fff
+			background $colorred
+			color #fff
+
+			&:hover
+				background #fff
+				color $colorred
+
+		.form-holder
+			.jcf-select-form-item--select
+				&.jcf-select-error
+					border-color #000
+					background-color #fff
+
+			.jcf-number
+				label.error
+					color #000
+		label.error
+			color #000
+
+	.form-item
+		&.error
+			border-color #000
+			color #000
+			background-color #fff
+
+
+	.form-success
+		margin-top 230px
+
+		.page-text
+			h1
+				color #fff
+			p
+				color #fff
+
+		.form-success-social
+
+			.form-success-social-list
+
+				.form-success-social-item
+
+					svg
+						path:not([fill=none])
+							fill #fff
+
 .form-close
 	position absolute
 	width 20px
@@ -751,9 +838,61 @@ body
 	background-repeat no-repeat
 	background-size contain
 
+.lazy-modal-container
+	transform translateY(-50px)
+	transition all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+	transition-delay 0s
+
+.lazy-modal.lazy-modal--show .lazy-modal-container
+	transform translateY(0)
+	transition-delay 0.3s
+
+.lazy-modal-background
+	transition-delay 0.3s
+
+.lazy-modal.lazy-modal--show .lazy-modal-background
+	transition-delay 0s
+
+
+.form-success
+	text-align center
+
+	.page-text
+		h1
+			margin-bottom 25px
+		p
+			margin-bottom 10px
+
+	.form-success-social
+		margin-top 120px
+
+		.form-success-social-list
+			display grid
+			grid-template-columns 1fr 1fr 1fr 1fr
+
+
+			max-width 400px
+			margin 0 auto
+
+			.form-success-social-item
+				display block
+				margin-top 50px
+				max-width 100px
+				height 60px
+
+				svg
+					display block
+					width 100%
+					height 100%
+
+					path:not([fill=none])
+						fill $colorred
+
+
 /* //style for form step */
 
 /** //form **/
+
 
 /** header and footer **/
 
@@ -1366,14 +1505,15 @@ body.open-menu
 		color #fff
 
 body.home-page
-	height 100%
-	min-height 100vh
 
 	background-image url("../dummy/main.png")
 	background-repeat no-repeat
 	background-size cover
 	background-position center
 	z-index -20
+
+	&.animate
+		background-size 150%
 
 	&:after
 		content ""

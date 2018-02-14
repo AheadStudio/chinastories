@@ -80,6 +80,25 @@
 				}
 			},
 
+			animationPage: {
+				init: function() {
+					var self = this;
+
+					self.homeAnimate();
+				},
+
+				homeAnimate: function() {
+					var self = this;
+
+					/*if ($sel.body.hasClass("home-page")) {
+						$sel.body.removeClass("animate");
+						setTimeout(function() {
+							$sel.body.addClass("animate");
+						}, 500)
+					}*/
+				},
+			},
+
 			mobileMenu:{
 				button: $(".header-burger"),
 				menu: $(".mobile-menu"),
@@ -330,77 +349,80 @@
 						var $form = $sel.body;
 					}
 
-					self.dataMobile();
 					self.validateForm();
 					self.replaceStandartInputs($form);
 					self.reloadJcf($(".form"));
 
 					// step form initialization
-					self.stepForm.init($(".form"));
-
-				},
-
-				dataMobile: function() {
-					var self = this;
-					$("[data-number]").each(function() {
-						var $item = $(this);
-						$item.mask($item.data("number"));
+					$(".form").each(function() {
+						(function(form) {
+							self.stepForm.init(form);
+						})($(this));
 					});
+
+
 				},
 
 				validateForm: function() {
 					var self = this;
 
 					$(".form", $sel.body).each(function() {
-						var $form = $(this),
-							$formFields = $form.find("[data-error]"),
-							formParams = {
-								rules: {
-								},
-								messages: {
-								}
-							};
-
-						$.validator.addMethod("mobileRU", function(phone_number, element) {
-							phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
-							return this.optional(element) || phone_number.length > 5 && phone_number.match(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{6,10}$/);
-						}, "Error");
-
-						$formFields.each(function() {
-							var $field = $(this),
-								fieldPattern = $field.data("pattern"),
-								fieldError = $field.data("error");
-							if(fieldError) {
-								formParams.messages[$field.attr("name")] = $field.data("error");
-							} else {
-								formParams.messages[$field.attr("name")] = "Ошибка заполнения";
-							}
-							if(fieldPattern) {
-								formParams.rules[$field.attr("name")] = {};
-								formParams.rules[$field.attr("name")][fieldPattern] = true;
-							}
-						});
-
-						if($form.data("success")) {
-
-							formParams.submitHandler = function(form) {
-
-								/*var options = {
-									type: "ajax",
-									bcgcolor: "#fff",
-									customclass: "form-call-container",
-									btnclosetml: '<button data-lazymodal-close class="lazy-modal-close">'+
-													'<span class="form-close"></span>'+
-												 '</button>',
-								    positionclose: "inside",
-									init: function(obj) {
-										obj.options.htmlContent = $(".form", obj.options.htmlContent);
+						(function($form) {
+							var $formFields = $form.find("[data-error]"),
+								formParams = {
+									rules: {
 									},
+									messages: {
+									}
 								};
-								$.lazymodal.open($("button",$form), options, $form.data("success"));*/
-							};
-						}
-						$form.validate(formParams);
+
+							$.validator.addMethod("mobileRU", function(phone_number, element) {
+								phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
+								return this.optional(element) || phone_number.length > 5 && phone_number.match(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{6,10}$/);
+							}, "Error");
+
+							$formFields.each(function() {
+								var $field = $(this),
+									fieldPattern = $field.data("pattern"),
+									fieldError = $field.data("error");
+								if(fieldError) {
+									formParams.messages[$field.attr("name")] = $field.data("error");
+								} else {
+									formParams.messages[$field.attr("name")] = "Ошибка заполнения";
+								}
+								if(fieldPattern) {
+									formParams.rules[$field.attr("name")] = {};
+									formParams.rules[$field.attr("name")][fieldPattern] = true;
+								}
+							});
+
+							$("[data-number]", $form).each(function() {
+								var $item = $(this);
+								$item.mask($item.data("number"));
+							});
+
+							if($form.data("success")) {
+
+								formParams.submitHandler = function(form) {
+
+									var options = {
+										type: "ajax",
+										bcgcolor: "#BD1D1D",
+										customclass: "form-step-container",
+										btnclosetml: '<button data-lazymodal-close class="lazy-modal-close">'+
+														'<span class="form-close"></span>'+
+													 '</button>',
+										positionclose: "outside",
+										init: function(obj) {
+											obj.options.htmlContent = $(".form-success", obj.options.htmlContent);
+										},
+									};
+									$.lazymodal.open($("button[type=submit]", $form), options, $form.data("success"));
+								};
+							}
+							$form.validate(formParams);
+
+						})($(this))
 					});
 				},
 
@@ -427,13 +449,14 @@
 
 					$numbers.each(function() {
 						var $number = $(this);
+
 						jcf.replace($number);
 					});
-
 
 				},
 
 				reloadJcf: function($form) {
+
 					$form.submit(function(event) {
 						var form = $(event.target),
 							$formItems = $form.find(".form-item");
@@ -443,7 +466,9 @@
 								jcf.refresh(el);
 							})($(this))
 						});
+
 					});
+
 				},
 
 				stepForm: {
@@ -490,9 +515,6 @@
 
 						self.finalText = self.resultForm.data("finaltext");
 
-
-
-
 						setTimeout(function() {
 							self.stepFormFontainer.removeClass("preload");
 						}, 300);
@@ -527,6 +549,7 @@
 							});
 
 							$activeFormStep.removeClass("disabled");
+
 							setTimeout(function() {
 								$activeFormStep.removeClass("hide-show");
 							}, 400);
@@ -547,7 +570,7 @@
 
 						(function(activeForm) {
 							self.activeFormItem = activeForm.find(".form-item");
-							self.wathChanges();
+							self.watchChanges();
 						})($activeFormStep);
 
 					},
@@ -596,12 +619,11 @@
 
 					},
 
-					wathChanges: function() {
+					watchChanges: function() {
 						var self = this;
-							self.finalText = self.resultFormTmpl;
 
 						self.activeFormItem.each(function() {
-							(function(elementsForm) {
+							(function(elementsForm, self) {
 								elementsForm.on("change", function() {
 									var el = $(this),
 										idEL = el.attr("id");
@@ -614,20 +636,18 @@
 										jcf.refresh(el);
 									}
 
+									self.finalText = self.resultFormTmpl;
 
-									/*for (var key in self.resultFormText) {
-										if (self.resultFormText[key] !== "") {
-											if (self.resultFormTmpl.indexOf(key) !== -1) {
-												intermediateText = self.resultFormTmpl.replace("{"+key+"}",self.resultFormText[key]);
-											}
+									for (var key in self.resultFormText) {
+										if (self.resultFormText[key] !== "" && self.resultFormTmpl.indexOf(key) !== -1) {
+											self.finalText = self.finalText.replace("{"+key+"}",self.resultFormText[key]);
 										}
-									}*/
-									self.finalText = self.finalText.replace("{"+idEL+"}",self.resultFormText[idEL]);
+									}
 
 									self.resultForm.text(self.finalText);
 
 								});
-							})($(this))
+							})($(this), self)
 						});
 
 					}
@@ -666,6 +686,7 @@
 	CHINASTORIES.maps.init();
 	CHINASTORIES.forms.modalWindow();
 	CHINASTORIES.forms.init();
+	CHINASTORIES.animationPage.init();
 	CHINASTORIES.ajaxLoader();
 
 	CHINASTORIES.reload = function() {};
