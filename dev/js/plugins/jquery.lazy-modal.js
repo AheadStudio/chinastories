@@ -124,7 +124,8 @@
 
             // get content
             if (self.options.type === "html") {
-                dataContent = $(self.options.content).get(0).outerHTML;
+                var dataContent = $(self.options.content).get(0).outerHTML;
+
                 self.options.htmlContent = $(dataContent);
 
                 self.hooks("init");
@@ -163,7 +164,7 @@
                 $html.css({ "overflow" : "hidden", "margin-right" : widthScroll });
                 $body.append(self.options.basetpl);
 
-                self.options.htmlStructure.el =  self.el;
+                self.options.htmlStructure.el = self.el;
 
                 self.options.htmlStructure.mainContainer = $(".lazy-modal", $body);
                 self.options.htmlStructure.contentContainer = $(".lazy-modal-container", self.options.htmlStructure.mainContainer);
@@ -397,10 +398,15 @@
         // check length data in event object
         sizeDataObj = Object.keys(dataEl).length;
         if (sizeDataObj >= 2) {
-            settingsPlugin = $.extend({}, dataEl, settingsPlugin);
+            settingsPlugin = $.extend({}, settingsPlugin, dataEl);
         }
 
-        // checkcontent, if null or empty, element show in popup
+        // check href attr element
+        if ($el.attr("href") && $el.attr("href") !== "" && $el.attr("href") !== "#") {
+            contentShow = $el.attr("href");
+        }
+
+        // check content, if null or empty, element show in popup
         if (contentShow === "" || !contentShow) {
             contentShow = $(this);
         }

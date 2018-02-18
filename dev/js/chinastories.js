@@ -169,27 +169,34 @@
 				$sel.body.on("click", ".load-more", function(event) {
 					var $linkAddress = $(this),
 						href = $linkAddress.attr("href"),
-						$container = $($linkAddress.data("container"));
+						$container = $($linkAddress.data("container")),
+						$items = $linkAddress.data("itemsselector");
+
 
 					$linkAddress.addClass("loading");
 
-					(function(href, $container) {
+					(function(href, $container, selector) {
 						$.ajax({
 							url: href,
 							success: function(data) {
-								var $data = $(data).addClass("load-events-item");
-									$container.append($data);
+								var $data = $('<div />').append(data),
+									$items = $data.find(selector);
+
+								$items.addClass("load-events-item");
+								$container.append($items);
+
 								setTimeout(function() {
-									CHINASTORIES.common.go($container.find(".load-events-item").offset().top-120, 1000);
 									$container.find(".load-events-item").removeClass("load-events-item");
 									$linkAddress.removeClass("loading");
 								}, 100);
+
 								setTimeout(function() {
+									CHINASTORIES.common.go($items.offset().top-100, 1000);
 									CHINASTORIES.reload();
 								}, 300);
 							}
 						})
-					})(href, $container);
+					})(href, $container, $items);
 					event.preventDefault();
 				})
 			},
@@ -529,6 +536,7 @@
 							$activeFormStep = $(".form-step--"+self.step, self.stepFormFontainer);
 
 						if (self.firstInit) {
+
 							$allFormStep.each(function() {
 								(function(el) {
 									el.addClass("disabled");
@@ -536,7 +544,9 @@
 							});
 
 							self.firstInit = false;
+
 						} else {
+
 							$allFormStep.each(function() {
 								(function(el) {
 									el.addClass("hide-show");
@@ -584,11 +594,11 @@
 							(function(el) {
 								el.on("click", function(e) {
 									var button = $(this),
-										buttonStepNumber = button.data("nextstep");
+										buttonStepNumber = button.data("nextstep"),
+										$currentElements = $(".form-step--"+self.step).find("[data-error]");
 
-									self.step = buttonStepNumber;
-
-									if (self.form.valid()) {
+									if ($currentElements.valid()) {
+										self.step = buttonStepNumber;
 										self.setStep();
 									} else {
 										self.activeFormItem.each(function() {

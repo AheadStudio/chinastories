@@ -24,7 +24,15 @@
     },
     "pages": {
         "home": {
-            "name": "Главная",
+            "name": "Главная. Картинка на фоне",
+            "progress": {
+                "desktop": "100",
+                "tablet": "0",
+                "mobile": "0"
+            }
+        },
+        "home_video": {
+            "name": "Главная. Видео на фоне",
             "progress": {
                 "desktop": "100",
                 "tablet": "0",

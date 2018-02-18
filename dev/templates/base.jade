@@ -63,7 +63,9 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 		])
 
 	body(itemscope, itemtype="http://schema.org/WebPage", class=page.code+"-page")
-		
+		if page.code == "home_video"
+			div(class="background-video")                                                                          
+				iframe(frameborder="0", height="100%", width="100%", src="http://www.youtube.com/embed/p64fMSsgqS0?&autoplay=1&loop=1&rel=0&showinfo=0&&playlist=p64fMSsgqS0&modestbranding=1&controls=0&showinfo=0", allow="autoplay; encrypted-media", allowfullscreen)
 		div(class="page")
 			header(class="page-header", itemscope, itemtype="http://schema.org/WPHeader")
 				div(class="header-holder  header-holder--fixed")
@@ -72,12 +74,12 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 							
 					if page.code != "home"
 						div(class="header-logo")
-							a(href="home.html", target="_blank", class="header-logo-home")
+							a(href="home.html", class="header-logo-home")
 								include ../../prod/svg/logo_red.svg
 							span(class="header-logo-title") Ресторан современной китайской кухни
 							
 				div(class="header-holder")
-					a(href="#", class="link button open-form", data-lazymodal="form-order.html", class=page.code === "home" ? "button--white-left header-booking" : "button--red-left header-booking") забронировать стол
+					a(href="form-order.html", class="link button open-form", data-lazymodal, class=page.code === "home" ? "button--white-left header-booking" : "button--red-left header-booking") забронировать стол
 					div(class="lang-bar", class=page.code === "home" ? "lang-bar--white" : "lang-bar--red")
 						a(href="#", class="link lang-bar-item delimiter") ru
 						a(href="#", class="link lang-bar-item delimiter") en
@@ -93,7 +95,7 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 					div(class="header-holder")
 	
 					div(class="header-holder")
-						a(href="#", data-lazymodal="form-order.html", class="link button button--white-left header-booking open-form") забронировать стол
+						a(href="form-order.html", data-lazymodal, class="link button button--white-left header-booking open-form") забронировать стол
 						div(class="lang-bar lang-bar--white")
 							a(href="#", class="link lang-bar-item delimiter") ru
 							a(href="#", class="link lang-bar-item delimiter") en
@@ -139,13 +141,13 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 						
 					div(class="footer-holder")
 						div(class="footer-social")
-							a(href="#", class="link footer-social-item")
+							a(href="#", target="_blank", class="link footer-social-item")
 								include ../../prod/svg/fb.svg 
-							a(href="#", class="link footer-social-item")
+							a(href="#", target="_blank", class="link footer-social-item")
 								include ../../prod/svg/inst.svg 
-							a(href="#", class="link footer-social-item")
+							a(href="#", target="_blank", class="link footer-social-item")
 								include ../../prod/svg/youtube.svg 
-							a(href="#", class="link footer-social-item")
+							a(href="#", target="_blank", class="link footer-social-item")
 								include ../../prod/svg/owl.svg 
 	
 		footer(class="page-footer", itemscope, itemtype="http://schema.org/WPFooter")
@@ -155,13 +157,13 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 				
 			div(class="footer-holder")
 				div(class="footer-social", class=page.code === "home" ? "" : "footer-social--red")
-					a(href="#", class="link footer-social-item")
+					a(href="#", target="_blank", class="link footer-social-item")
 						include ../../prod/svg/fb.svg 
-					a(href="#", class="link footer-social-item")
+					a(href="#", target="_blank", class="link footer-social-item")
 						include ../../prod/svg/inst.svg 
-					a(href="#", class="link footer-social-item")
+					a(href="#", target="_blank", class="link footer-social-item")
 						include ../../prod/svg/youtube.svg 
-					a(href="#", class="link footer-social-item")
+					a(href="#", target="_blank", class="link footer-social-item")
 						include ../../prod/svg/owl.svg 
 
 
