@@ -27,56 +27,56 @@
             "name": "Главная. Картинка на фоне",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             }
         },
         "home_video": {
             "name": "Главная. Видео на фоне",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             }
         },
         "about": {
             "name": "О ресторане",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             }
         },
         "team": {
             "name": "Команда",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             }
         },
         "menu": {
             "name": "Меню",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             }
         },
         "news": {
             "name": "Новости",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             }
         },
         "news-load": {
             "name": "Новости добавить",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             },
             "hidden": true
         },
@@ -84,24 +84,24 @@
             "name": "Новость",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             }
         },
         "contacts": {
             "name": "Контакты",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             }
         },
         "form-order": {
             "name": "Забронировать стол",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             },
             "hidden": true
         },
@@ -109,8 +109,8 @@
             "name": "Стол забранирован!",
             "progress": {
                 "desktop": "100",
-                "tablet": "0",
-                "mobile": "0"
+                "tablet": "100",
+                "mobile": "100"
             },
             "hidden": true
         }
