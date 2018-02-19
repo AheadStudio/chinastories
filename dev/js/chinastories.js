@@ -595,8 +595,7 @@
 								el.on("click", function(e) {
 									var button = $(this),
 										buttonStepNumber = button.data("nextstep"),
-										$currentElements = $(".form-step--"+self.step).find("[data-error]");
-
+										$currentElements = $(".form-step--"+self.step, button.closest(".form")).find("[data-error]");									
 									if ($currentElements.valid()) {
 										self.step = buttonStepNumber;
 										self.setStep();

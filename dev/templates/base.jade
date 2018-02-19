@@ -61,29 +61,34 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 				noCache: true
 			}
 		])
-
+		
 	body(itemscope, itemtype="http://schema.org/WebPage", class=page.code+"-page")
 		if page.code == "home_video"
 			div(class="background-video")                                                                          
 				iframe(frameborder="0", height="100%", width="100%", src="http://www.youtube.com/embed/p64fMSsgqS0?&autoplay=1&loop=1&rel=0&showinfo=0&&playlist=p64fMSsgqS0&modestbranding=1&controls=0&showinfo=0", allow="autoplay; encrypted-media", allowfullscreen)
 		div(class="page")
-			header(class="page-header", itemscope, itemtype="http://schema.org/WPHeader")
+			header(class="page-header page-header--main", itemscope, itemtype="http://schema.org/WPHeader")
 				div(class="header-holder  header-holder--fixed")
-					div(class="header-burger", class=page.code === "home" ? "header-burger--white" : "header-burger--red")
+					div(class="header-burger", class=((page.code === "home" || page.code === "home_video") || page.code === "home_video") ? "header-burger--white" : "header-burger--red")
 						span(class="header-burger-inner")
-							
-					if page.code != "home"
-						div(class="header-logo")
-							a(href="home.html", class="header-logo-home")
-								include ../../prod/svg/logo_red.svg
-							span(class="header-logo-title") Ресторан современной китайской кухни
+						
+					div(class="header-logo")
+						a(href="home.html", class="header-logo-home")
+							include ../../prod/svg/logo_red.svg
+						span(class="header-logo-title") Ресторан современной китайской кухни
 							
 				div(class="header-holder")
-					a(href="form-order.html", class="link button open-form", data-lazymodal, class=page.code === "home" ? "button--white-left header-booking" : "button--red-left header-booking") забронировать стол
-					div(class="lang-bar", class=page.code === "home" ? "lang-bar--white" : "lang-bar--red")
+					a(href="form-order.html", class="link button open-form", data-lazymodal, class=(page.code === "home" || page.code === "home_video") ? "button--white-left header-booking" : "button--red-left header-booking") забронировать стол
+					div(class="lang-bar", class=(page.code === "home" || page.code === "home_video") ? "lang-bar--white" : "lang-bar--red")
 						a(href="#", class="link lang-bar-item delimiter") ru
 						a(href="#", class="link lang-bar-item delimiter") en
 						a(href="#", class="link lang-bar-item") cn
+						
+						
+					div(class="header-logo header-logo--horizotal")
+						a(href="home.html", class="header-logo-home")
+							include ../../prod/svg/logo_horizontal.svg
+						span(class="header-logo-title") Ресторан современной китайской кухни
 
 			main(class="page-content")
 				block content
@@ -150,13 +155,13 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 							a(href="#", target="_blank", class="link footer-social-item")
 								include ../../prod/svg/owl.svg 
 	
-		footer(class="page-footer", itemscope, itemtype="http://schema.org/WPFooter")
+		footer(class="page-footer page-footer--main", itemscope, itemtype="http://schema.org/WPFooter")
 			div(class="footer-holder")
-				div(class="footer-location", class=page.code === "home" ? "footer-location--white" : "footer-location--red") Владивосток, ул. светланская, 83,
-				a(href="tel:+7423255055", class="link footer-mobile", class=page.code === "home" ? "link--white footer-mobile" : "link--red footer-mobile") +7 423 255 0 55
+				div(class="footer-location", class=(page.code === "home" || page.code === "home_video") ? "footer-location--white" : "footer-location--red") Владивосток, ул. светланская, 83,
+				a(href="tel:+7423255055", class="link footer-mobile", class=(page.code === "home" || page.code === "home_video") ? "link--white footer-mobile" : "link--red footer-mobile") +7 423 255 0 55
 				
 			div(class="footer-holder")
-				div(class="footer-social", class=page.code === "home" ? "" : "footer-social--red")
+				div(class="footer-social", class=(page.code === "home" || page.code === "home_video") ? "" : "footer-social--red")
 					a(href="#", target="_blank", class="link footer-social-item")
 						include ../../prod/svg/fb.svg 
 					a(href="#", target="_blank", class="link footer-social-item")

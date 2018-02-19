@@ -463,6 +463,7 @@ body
 			background #fff
 
 			cursor pointer
+			transition background 0.3s $transitionAnimation
 
 			.jcf-select-opener
 				position absolute
@@ -484,6 +485,8 @@ body
 
 			&.jcf-drop-active
 			&:hover
+				background #f4f4f4
+
 				.jcf-select-opener
 					background-image url("../svg/arrow_form_bottom_red.svg")
 
@@ -670,6 +673,8 @@ body
 
 	background #fff
 
+	transition background 0.3s $transitionAnimation
+
 	&--textarea
 		resize none
 
@@ -683,6 +688,8 @@ body
 	&.error
 		background-color #ecc7c7
 
+	&:hover
+		background #f4f4f4
 
 /* style for form step */
 .form-steps
@@ -881,13 +888,13 @@ body
 			display grid
 			grid-template-columns 1fr 1fr 1fr 1fr
 
-
 			max-width 400px
 			margin 0 auto
 
+			margin-top 50px
+
 			.form-success-social-item
 				display block
-				margin-top 50px
 				max-width 100px
 				height 60px
 
@@ -1028,7 +1035,7 @@ body
 
 .header-logo
 	position absolute
-	top 43px
+	top 45px
 	left 0
 
 	.header-logo-home
@@ -1049,6 +1056,13 @@ body
 		font-family "RistrettoProRegular"
 
 		color $colorred
+
+	&--horizotal
+		display none
+
+		.header-logo-home
+			width auto
+			max-width 200px
 
 .header-booking
 	width 100%
@@ -1248,7 +1262,7 @@ body
 	line-height 28px
 
 	h1
-		margin-bottom 50px
+		margin-bottom 60px
 
 		line-height 1
 		font-family "NarrowMedium"
@@ -1381,8 +1395,10 @@ body
 		grid-gap 10px 0
 
 		dt
+			white-space nowrap
 			font-size 18px
 		dd
+			white-space nowrap
 			font-family "PTMonoBold"
 
 /** //page text **/
@@ -1523,11 +1539,6 @@ body.open-menu
 
 body.home-page
 body.home_video-page
-
-	background-image url("../dummy/main.png")
-	background-repeat no-repeat
-	background-size cover
-	background-position center
 	z-index -20
 
 	&.animate
@@ -1554,6 +1565,15 @@ body.home_video-page
 
 	.page
 		margin-bottom 0
+
+	.header-logo
+		display none
+
+body.home-page
+	background-image url("../dummy/main.jpg")
+	background-repeat no-repeat
+	background-size cover
+	background-position center
 
 /*** //page home ***/
 

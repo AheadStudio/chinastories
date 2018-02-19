@@ -496,9 +496,6 @@ gulp.task("js", function() {
 // Контентная медиа
 gulp.task("dummy", function() {
 	gulp.src([settings.paths.dev.dummy + "*", settings.paths.dev.dummy + "**"])
-		.pipe(imagemin({
-			//progressive: false
-		}))
 		.pipe(gulp.dest(settings.paths.prod.dummy));
 });
 
