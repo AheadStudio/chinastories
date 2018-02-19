@@ -361,7 +361,7 @@
 					self.reloadJcf($(".form"));
 
 					// step form initialization
-					$(".form").each(function() {
+					$form.each(function() {
 						(function(form) {
 							self.stepForm.init(form);
 						})($(this));
@@ -595,7 +595,8 @@
 								el.on("click", function(e) {
 									var button = $(this),
 										buttonStepNumber = button.data("nextstep"),
-										$currentElements = $(".form-step--"+self.step, button.closest(".form")).find("[data-error]");									
+										$currentElements = $(".form-step--"+self.step, button.closest(".form")).find("[data-error]");
+
 									if ($currentElements.valid()) {
 										self.step = buttonStepNumber;
 										self.setStep();
@@ -610,7 +611,7 @@
 									}
 
 								});
-							})($(this))
+							})($(this));
 						})
 						$buttonStepPrev.each(function() {
 							(function(el) {
@@ -623,7 +624,7 @@
 									e.preventDefault();
 								});
 
-							})($(this))
+							})($(this));
 						})
 
 					},
@@ -671,7 +672,7 @@
 							obj.options.htmlContent = $("#step-form", obj.options.htmlContent);
 						},
 						afterImplant: function(obj) {
-							CHINASTORIES.forms.init();
+							CHINASTORIES.forms.init(obj.options.htmlContent.find(".form"));
 						},
 						customclass: "form-step-container",
 						btnclosetml: '<button data-lazymodal-close class="lazy-modal-close">'+
@@ -698,5 +699,4 @@
 	CHINASTORIES.animationPage.init();
 	CHINASTORIES.ajaxLoader();
 
-	CHINASTORIES.reload = function() {};
 })(jQuery);
