@@ -82,7 +82,11 @@
     top: 20px;
     z-index: 14000;
     pointer-events: auto;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -moz-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -o-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -ms-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .lazy-modal-close:hover {
     transform: rotate(90deg);
@@ -99,4 +103,11 @@ body.open-lazy-modal {
     /*overflow: hidden;*/
     height: 100%;
     -webkit-overflow-scrolling: touch;
+}
+.lazy-modal .lazy-modal-close {
+    display: block;
+    opacity: 0;
+}
+.lazy-modal--show .lazy-modal-close {
+    opacity: 1;
 }

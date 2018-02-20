@@ -1470,6 +1470,8 @@ body.open-menu
 			transition-delay 0.4s
 
 	.mobile-menu-container
+		position relative
+
 		display none
 		height 100%
 
@@ -1481,7 +1483,10 @@ body.open-menu
 		opacity 0
 
 		.mobile-menu-container-holder
-			position relative
+			position absolute
+			top 50%
+
+			transform translateY(-50%)
 
 			padding-left 150px
 			box-sizing border-box
