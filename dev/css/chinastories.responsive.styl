@@ -21,9 +21,17 @@
 /*** //desktop ***/
 
 /*** tablet ***/
-@media screen and (max-width: 1136px)
+@media screen and (max-height: 710px)
+    body.home-page
+    body.home_video-page
+        .page-header--main
+            padding 25px 35px 0px 30px
+
     .presentation
-        margin-top -130px
+        .presentation-logo
+            max-width 130px
+
+@media screen and (max-width: 1136px)
 
     .mobile-menu
         .mobile-menu-container
@@ -87,11 +95,11 @@
 
     body.home-page
     body.home_video-page
-        .page-footer
-            position absolute
+        .page-footer--main
             padding 0 35px 20px 30px
-            bottom 0
-            margin-top 0
+
+        .background-video
+            display none
 
     .page-header
         padding 25px 30px 90px 30px
@@ -255,6 +263,19 @@
             padding 40px 0
             max-width 100%
 
+@media screen and (max-height: 450px)
+    .mobile-menu
+        .mobile-menu-container
+            .page-footer
+                position relative
+
+            .mobile-menu-container-holder
+                position relative
+                top 0
+                transform translateY(0)
+                margin-bottom 20px
+                padding-left 25px
+
 @media screen and (max-width: 800px)
     body.home-page
     body.home_video-page
@@ -265,7 +286,6 @@
         margin-top 250px
 
     .presentation
-        margin-top -100px
 
         .presentation-title
             font-size 38px
@@ -417,7 +437,6 @@
 
             .page-footer
                 position relative
-
                 padding 0 20px 5px 25px
                 flex-flow column-reverse
 
