@@ -112,6 +112,17 @@
         $.lazymodal.instance = true;
 
         self.create();
+
+
+        // check init plugin on element
+        var initialization = self.el.data("lazyModalInit");
+
+        if (initialization === "on") {
+            return;
+        } else {
+            self.el.data("lazyModalInit", "on");
+        }
+
     };
 
     // === Expanding class new properties === //
@@ -178,15 +189,6 @@
                     self.options.htmlStructure.mainContainer.append(self.options.btnclosetml);
                 } else if (self.options.positionclose === "inside") {
                     self.options.htmlStructure.contentContainer.append(self.options.btnclosetml);
-                }
-
-                // check init plugin on element
-                var initialization = self.options.htmlStructure.el.data("lazyModalInit");
-
-                if (initialization === "on") {
-                    return;
-                } else {
-                    self.options.htmlStructure.el.data("lazyModalInit", "on");
                 }
 
                 self.includeContent(self.options.htmlStructure.contentContainer, self.options.position);
@@ -393,6 +395,11 @@
         if (paramsPlugin.isDefaultPrevented()) {
             return;
         }
+
+        if (dataEl.lazyModalInit === "on") {
+            return;
+        }
+
         paramsPlugin.preventDefault();
 
         // check length data in event object

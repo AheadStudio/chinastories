@@ -6,15 +6,15 @@ block content
             h1 Контакты
             
     div(class="page-inner page-inner--w2 page-inner--top")
-        div(class="contacts")
-            div(class="contacts-location")
-                div(class="contacts-city") Владивосток
-                div(class="contacts-street") ул. Светланская, 83,
-                a(href="tel:+7232550555", class="link link-black contacts-mobile") +7 423 255 0 55
-            div(class="contacts-mode")
+        div(class="contacts", itemscope, itemtype="http://schema.org/Organization")
+            div(class="contacts-location", itemprop="address", itemscope, itemtype="http://schema.org/PostalAddress")
+                a(href="yandexnavi://build_route_on_map?lat_to=43.11545057450592&lon_to=131.90252549999985", class="link link-black contacts-city", itemprop="addressLocality") Владивосток
+                a(href="yandexnavi://build_route_on_map?lat_to=43.11545057450592&lon_to=131.90252549999985", class="link link-black contacts-street", itemprop="streetAddress") ул. Светланская, 83,
+                a(href="tel:+7232550555", class="link link-black contacts-mobile", itemprop="telephone") +7 423 255 0 55
+            div(class="contacts-mode", itemscope, itemtype="http://schema.org/Pharmacy")
                 div(class="contacts-mode-text") Режим работы:
                 div(class="page-text")
-                    dl
+                    dl(itemprop="openingHours", datetime="Su-We 12:00-00:00; Th-Sa 12:00-02:00")
                         dt Вс / Пн / Вт / Ср
                         dd 12:00 - 00:00
                         dt Чт / Пт / Сб /

@@ -175,15 +175,23 @@
 
 					$linkAddress.addClass("loading");
 
-					(function(href, $container, selector) {
+					(function(href, $container, selector, $link) {
 						$.ajax({
 							url: href,
 							success: function(data) {
 								var $data = $('<div />').append(data),
-									$items = $data.find(selector);
+									$items = $data.find(selector),
+									$preloader = $data.find(".load-more"),
+									$linkParent = $link.parent();
+
 
 								$items.addClass("load-events-item");
 								$container.append($items);
+								$link.remove();
+
+								if($preloader && $preloader.length) {
+									$linkParent.append($preloader);
+								}
 
 								setTimeout(function() {
 									$container.find(".load-events-item").removeClass("load-events-item");
@@ -192,11 +200,10 @@
 
 								setTimeout(function() {
 									CHINASTORIES.common.go($items.offset().top-100, 1000);
-									CHINASTORIES.reload();
 								}, 300);
 							}
 						})
-					})(href, $container, $items);
+					})(href, $container, $items,$linkAddress);
 					event.preventDefault();
 				})
 			},
@@ -237,6 +244,45 @@
 						autoplay = true;
 						var autoplaySpeed = 300;
 					}
+
+					if (slider.hasClass("content-slider--big")) {
+						slider.slick({
+							arrows: true,
+							appendArrows: arrowContainer,
+							autoplay: autoplay,
+	  						autoplaySpeed: autoplaySpeed,
+							prevArrow: '<div class="slick-arrow-prev"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.04 74.55"><g data-name="Слой 2"><path d="M78.74 74.55L58.22 36.9 80 0 0 35.89z" fill="#bd1d1d" data-name="Слой 1"/></g></svg></div>',
+							nextArrow: '<div class="slick-arrow-next"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79.8 74.93"><g data-name="Слой 2"><path d="M0 0l21.28 37.47L0 74.93l79.8-37.46z" fill="#bd1d1d" data-name="Слой 1"/></g></svg></div>',						infinite: true,
+							speed: 800,
+							autoplaySpeed: 6000,
+							slidesToShow: 4,
+							slidesToScroll: 2,
+							responsive: [
+								{
+									breakpoint: 1600,
+									settings: {
+										slidesToShow: 3,
+										slidesToScroll: 3,
+									}
+								}, {
+									breakpoint: 1225,
+									settings: {
+										slidesToShow: 2,
+										slidesToScroll: 2
+									}
+								}, {
+									breakpoint: 780,
+									settings: {
+										slidesToShow: 1,
+										slidesToScroll: 1
+									}
+								}
+							]
+						});
+						return;
+					}
+
+
 					slider.slick({
 						arrows: true,
 						appendArrows: arrowContainer,
@@ -248,6 +294,9 @@
 						slidesToShow: 1,
 						autoplaySpeed: 6000,
 					});
+
+
+
 
 					itemSlider.on("mousedown", function() {
 						item = $(this);
@@ -439,7 +488,7 @@
 
 					jcf.setOptions("Select", {
 						wrapNative: false,
-						wrapNativeOnMobile: false,
+						wrapNativeOnMobile: true,
 						maxVisibleItems: 6,
 					});
 

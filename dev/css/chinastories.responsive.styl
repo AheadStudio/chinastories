@@ -336,7 +336,7 @@
     // стили на всех старницах
     .page-header--main
         flex-flow row-reverse
-        padding 25px 30px 0px 30px
+        padding 25px 25px 0px 25px
 
         .header-booking
             display none
@@ -348,7 +348,7 @@
         display none
 
         &--horizotal
-            top 0
+            top -6.5px
             position inherit
             display block
 
@@ -361,6 +361,14 @@
         .footer-holder:last-child
             max-width 150px
             margin-bottom 25px
+            margin-left -7px
+
+            .footer-social-item
+                margin-right 0
+
+            .footer-social-item:last-child
+                max-width 38px
+
 
     // стили на главной
     body.home-page
@@ -408,17 +416,30 @@
                     text-align left
 
             .page-footer
-                padding 0 20px 15px 25px
+                position relative
+
+                padding 0 20px 5px 25px
                 flex-flow column-reverse
 
                 .footer-holder:first-child
-                    max-width 170px
+                    max-width 180px
 
                 .footer-holder:last-child
                     max-width 150px
-                    margin-bottom 15px
+                    margin-bottom 5px
+                    margin-left -7px
+
+                    .footer-social-item
+                        margin-right 0
+
+                    .footer-social-item:last-child
+                        max-width 38px
 
             .mobile-menu-container-holder
+                position relative
+                top 0
+                transform translateY(0)
+                margin-bottom 20px
                 padding-left 25px
 
     .mobile-menu-holder

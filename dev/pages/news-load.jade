@@ -1,17 +1,48 @@
-div(class="news-item")
-    div(class="news-item-container-img")
-        img(src="../dummy/news_1.jpg")
-    div(class="news-item-container-info")
-        div(class="news-item-title") Каждый 10-ый бизнес-ланч в подарок!
-        div(class="news-item-date") 2017-10-10
-        div(class="news-item-text") Not Every Week is a Party, But There’s Always Something Happening
-        a(href="news-detail.html", class="link link-black link--black-bottom news-item-more") Подробнее
+extends ../templates/base
+
+block content
+    div(class="page-inner page-inner--w2 page-inner--top")
+        div(class="page-text")
+            h1 Новости
         
-div(class="news-item")
-    div(class="news-item-container-img")
-        img(src="../dummy/news_2.jpg")
-    div(class="news-item-container-info")
-        div(class="news-item-title") The Realness
-        div(class="news-item-date") 2017-10-10
-        div(class="news-item-text") The Realness is a website where you can find owner-operators, who own and run just one single restaurant. No franchises, no chains, no big brands. Just independent, local dining experiences anywhere on the planet - Starting in Auckland
-        a(href="news-detail.html", class="link link-black link--black-bottom news-item-more") Подробнее
+        div(class="news")
+            div(class="news-holder", id="news-load")
+                div(class="news-item")
+                    div(class="news-item-container-img")
+                        img(src="../dummy/news_1.jpg")
+                    div(class="news-item-container-info")
+                        div(class="news-item-title") Каждый 10-ый бизнес-ланч в подарок!
+                        div(class="news-item-date") 2017-10-10
+                        div(class="news-item-text") Not Every Week is a Party, But There’s Always Something Happening
+                        a(href="news-detail.html", class="link link-black link--black-bottom news-item-more") Подробнее
+                        
+                div(class="news-item")
+                    div(class="news-item-container-img")
+                        img(src="../dummy/news_2.jpg")
+                    div(class="news-item-container-info")
+                        div(class="news-item-title") The Realness
+                        div(class="news-item-date") 2017-10-10
+                        div(class="news-item-text") The Realness is a website where you can find owner-operators, who own and run just one single restaurant. No franchises, no chains, no big brands. Just independent, local dining experiences anywhere on the planet - Starting in Auckland
+                        a(href="news-detail.html", class="link link-black link--black-bottom news-item-more") Подробнее
+                        
+                div(class="news-item")
+                    div(class="news-item-container-img")
+                        img(src="../dummy/news_3.jpg")
+                    div(class="news-item-container-info")
+                        div(class="news-item-title") The Oliver Wall, Artist
+                        div(class="news-item-date") 2017-07-21
+                        div(class="news-item-text") The Oliver Wall, check him out!
+                        a(href="news-detail.html", class="link link-black link--black-bottom news-item-more") Подробнее
+                        
+                div(class="news-item")
+                    div(class="news-item-container-img")
+                        img(src="../dummy/news_4.jpg")
+                    div(class="news-item-container-info")
+                        div(class="news-item-title") The Realness
+                        div(class="news-item-date") 2017-10-10
+                        div(class="news-item-text") The Realness is a website where you can find owner-operators, who own and run just one single restaurant. No franchises, no chains, no big brands. Just independent, local dining experiences anywhere on the planet - Starting in Auckland
+                        a(href="news-detail.html", class="link link-black link--black-bottom news-item-more") Подробнее
+                
+            div(class="load")
+                a(href="news-load.html?Page=1", data-container="#news-load", data-itemsselector=".news-item", class="link load-more")
+                

@@ -72,8 +72,8 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 					div(class="header-burger", class=((page.code === "home" || page.code === "home_video") || page.code === "home_video") ? "header-burger--white" : "header-burger--red")
 						span(class="header-burger-inner")
 						
-					div(class="header-logo")
-						a(href="home.html", class="header-logo-home")
+					div(class="header-logo", itemscope, itemtype="http://schema.org/Organization")
+						a(href="home.html", class="header-logo-home", itemprop="url")
 							include ../../prod/svg/logo_red.svg
 						span(class="header-logo-title") Ресторан современной китайской кухни
 							
@@ -85,8 +85,8 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 						a(href="#", class="link lang-bar-item") cn
 						
 						
-					div(class="header-logo header-logo--horizotal")
-						a(href="home.html", class="header-logo-home")
+					div(class="header-logo header-logo--horizotal", itemscope, itemtype="http://schema.org/Organization")
+						a(href="home.html", class="header-logo-home", itemprop="url")
 							include ../../prod/svg/logo_horizontal.svg
 						span(class="header-logo-title") Ресторан современной китайской кухни
 
@@ -139,9 +139,10 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 						]
 					})
 					
-				div(class="page-footer")
-					div(class="footer-holder")
-						div(class="footer-location footer-location--white") Владивосток, ул. светланская, 83,
+				div(class="page-footer", itemscope, itemtype="http://schema.org/Organization")
+					div(class="footer-holder", itemprop="address", itemscope, itemtype="http://schema.org/PostalAddress")
+						a(href="yandexnavi://build_route_on_map?lat_to=43.11545057450592&lon_to=131.90252549999985", class="link link-black footer-location footer-location--white", itemprop="addressLocality") Владивосток
+						a(href="yandexnavi://build_route_on_map?lat_to=43.11545057450592&lon_to=131.90252549999985", class="link link-black footer-location footer-location--white", itemprop="streetAddress") ул. Светланская, 83,
 						a(href="tel:+7423255055", class="link footer-mobile link--white footer-mobile") +7 423 255 0 55
 						
 					div(class="footer-holder")
@@ -157,7 +158,8 @@ html(lang="ru", class="no-js", prefix="og:http://ogp.me/ns#")
 	
 		footer(class="page-footer page-footer--main", itemscope, itemtype="http://schema.org/WPFooter")
 			div(class="footer-holder")
-				div(class="footer-location", class=(page.code === "home" || page.code === "home_video") ? "footer-location--white" : "footer-location--red") Владивосток, ул. светланская, 83,
+				a(href="yandexnavi://build_route_on_map?lat_to=43.11545057450592&lon_to=131.90252549999985", class="link footer-location", class=(page.code === "home" || page.code === "home_video") ? "footer-location--white" : "footer-location--red") Владивосток
+				a(href="yandexnavi://build_route_on_map?lat_to=43.11545057450592&lon_to=131.90252549999985", class="link footer-location", class=(page.code === "home" || page.code === "home_video") ? "footer-location--white" : "footer-location--red") ул. Светланская, 83,
 				a(href="tel:+7423255055", class="link footer-mobile", class=(page.code === "home" || page.code === "home_video") ? "link--white footer-mobile" : "link--red footer-mobile") +7 423 255 0 55
 				
 			div(class="footer-holder")
