@@ -212,10 +212,10 @@
 
 				init: function() {
 					var self = this,
-						$contentSlider = $(".content-slider");
+						$contentSlider = $(".content-slider:not(.owl-carousel)");
 
 					self.slickContentSlider($contentSlider);
-
+					self.owlSlider();
 				},
 
 				slickContentSlider: function(slider) {
@@ -245,7 +245,7 @@
 						var autoplaySpeed = 300;
 					}
 
-					if (slider.hasClass("content-slider--big")) {
+					/*if (slider.hasClass("content-slider--big")) {
 						slider.slick({
 							arrows: true,
 							appendArrows: arrowContainer,
@@ -281,7 +281,7 @@
 						});
 						return;
 					}
-
+					*/
 
 					slider.slick({
 						arrows: true,
@@ -289,7 +289,8 @@
 						autoplay: autoplay,
   						autoplaySpeed: autoplaySpeed,
 						prevArrow: '<div class="slick-arrow-prev"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.04 74.55"><g data-name="Слой 2"><path d="M78.74 74.55L58.22 36.9 80 0 0 35.89z" fill="#bd1d1d" data-name="Слой 1"/></g></svg></div>',
-						nextArrow: '<div class="slick-arrow-next"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79.8 74.93"><g data-name="Слой 2"><path d="M0 0l21.28 37.47L0 74.93l79.8-37.46z" fill="#bd1d1d" data-name="Слой 1"/></g></svg></div>',						infinite: true,
+						nextArrow: '<div class="slick-arrow-next"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79.8 74.93"><g data-name="Слой 2"><path d="M0 0l21.28 37.47L0 74.93l79.8-37.46z" fill="#bd1d1d" data-name="Слой 1"/></g></svg></div>',
+						infinite: true,
 						speed: 800,
 						slidesToShow: 1,
 						autoplaySpeed: 6000,
@@ -309,6 +310,39 @@
 					})
 
 				},
+
+				owlSlider: function() {
+					var self = this,
+						owlSlider = $('.owl-carousel'),
+						arrow = owlSlider.parent().find(".content-slider-arrows");
+
+					$('.owl-carousel').owlCarousel({
+						margin: 0,
+						loop: true,
+						autoWidth: true,
+						items: 4,
+						navContainer: arrow,
+						nav: true,
+						smartSpeed: 1000,
+						navText: ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.04 74.55"><g data-name="Слой 2"><path d="M78.74 74.55L58.22 36.9 80 0 0 35.89z" fill="#bd1d1d" data-name="Слой 1"/></g></svg>', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79.8 74.93"><g data-name="Слой 2"><path d="M0 0l21.28 37.47L0 74.93l79.8-37.46z" fill="#bd1d1d" data-name="Слой 1"/></g></svg>'],
+						responsive : {
+							0: {
+								items: 1,
+								autoWidth: false,
+							},
+							780: {
+								items: 2,
+							},
+							1200: {
+								items: 4,
+							},
+							1600: {
+								items: 5,
+							}
+						}
+					})
+
+				}
 
 			},
 
