@@ -801,6 +801,8 @@ body
 			background $colorred
 			color #fff
 
+			font-family "PTMonoRegular"
+
 			&:hover
 				background #fff
 				color $colorred
@@ -1169,6 +1171,7 @@ body
 		font-size 22px
 		font-family "RistrettoProRegular"
 		letter-spacing 2.5px
+		white-space nowrap
 		&--red
 			color $colorred
 
@@ -1392,6 +1395,20 @@ body
 
 	.content-slider
 		display block
+
+		opacity 0
+		transform scale(0.98)
+
+		transition opacity 0.3s $transitionAnimation, transform 0.3s $transitionAnimation
+		transition-delay 0.8s
+
+		&.slick-initialized
+			opacity 1
+			transform scale(1)
+
+		&.owl-drag
+			opacity 1
+			transform scale(1)
 
 		.content-slider-item
 			width 100%
