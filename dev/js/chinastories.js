@@ -508,6 +508,10 @@
 										init: function(obj) {
 											obj.options.htmlContent = $(".form-success", obj.options.htmlContent);
 										},
+										afterImplant: function(obj) {
+											obj.options.htmlStructure.contentContainer.append('<button data-lazymodal-close class="lazy-modal-close lazy-modal-close-mobile"><span class="form-close"></span></button>');
+										},
+										positionclose: "outside",
 									};
 									$.lazymodal.open($("button[type=submit]", $form), options, $form.data("success"));
 								};
@@ -782,7 +786,7 @@
 
 				var calc = windowHeight-logoHeight-headerHeight-footerHeight;
 				$logoBlock.css("margin-top", calc/2);
-		
+
 				$(window).resize(function() {
 					var self = this;
 						windowHeight = $sel.window.height(),
