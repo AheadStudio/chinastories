@@ -767,11 +767,34 @@
 						positionclose: "outside",
 					});
 
-				}
+				},
 
 			},
 
 
+			heightLogo: function() {
+				var self = this;
+					windowHeight = $sel.window.height(),
+					$logoBlock = $(".presentation"),
+					logoHeight = $logoBlock.height(),
+					headerHeight = $(".page-header--main").height(),
+					footerHeight = $(".page-footer--main").height();
+
+				var calc = windowHeight-logoHeight-headerHeight-footerHeight;
+				$logoBlock.css("margin-top", calc/2);
+		
+				$(window).resize(function() {
+					var self = this;
+						windowHeight = $sel.window.height(),
+						$logoBlock = $(".presentation"),
+						logoHeight = $logoBlock.height(),
+						headerHeight = $(".page-header--main").height(),
+						footerHeight = $(".page-footer--main").height();
+
+					var calc = windowHeight-logoHeight-headerHeight-footerHeight;
+					$logoBlock.css("margin-top", calc/2);
+				})
+			}
 
 		};
 
@@ -784,5 +807,6 @@
 	CHINASTORIES.forms.init();
 	CHINASTORIES.animationPage.init();
 	CHINASTORIES.ajaxLoader();
+	CHINASTORIES.heightLogo();
 
 })(jQuery);
