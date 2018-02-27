@@ -18,6 +18,11 @@
             max-width 775px
             padding-left 65px
 
+    .tour
+        right -170px
+
+        .tour-container
+            margin-right 5px
 /*** //desktop ***/
 
 /*** tablet ***/
@@ -78,6 +83,11 @@
             dd
                 font-size 16px
                 text-align right
+
+    .tour
+        position relative
+        top auto
+        right auto
 
 @media screen and (max-width: 1024px)
     .page
@@ -545,17 +555,17 @@
             font-size 54px
 
     .form-row
-        margin-bottom 40px
+        margin-bottom 30px
         flex-flow column
         justify-content flex-start
         align-items flex-start
 
         &-w25
             width 180px
+            margin-top 30px
 
         &-w65
             width 100%
-            margin-bottom 40px
 
         &-w30
             width 100%
@@ -579,10 +589,25 @@
     .form-steps
         .privacy-policy
             width 100%
+            padding 0
+
+            margin-bottom 30px
+
+        .form-step
+            margin-top 40px
 
     .form-step-container
         .form-success
             margin-top 30px
+
+        .form-steps
+            .form-result
+                margin-bottom 30px
+
+                .form-result-text
+                    margin-bottom 20px
+                .form-result-info
+                    line-height 25px
 
     .form-success
         .form-success-social
@@ -592,7 +617,21 @@
                     max-width 65px
                     height 45px
 
+    .form-row--button
+        .form-row--relative
+            display flex
+            flex-flow column-reverse
 
+    .form-step-container
+        .lazy-modal-container
+            margin-top 0
+
+        .lazy-modal-close
+            display none
+
+            &.lazy-modal-close-mobile
+                display block
+                
 @media screen and (max-height: 640px)
     .form-step-container
         .form-success

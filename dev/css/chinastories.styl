@@ -760,6 +760,9 @@ body
 		right 35px
 		top 35px
 
+		&.lazy-modal-close-mobile
+			display none
+
 	.form-container
 		.form-icon
 			svg
@@ -1909,3 +1912,41 @@ body.home_video-page
 	.map
 		height 100%
 /*** //contacts ***/
+
+
+/** 3d тур **/
+.tour
+	position absolute
+	top 135px
+	right 0
+
+	trans
+
+	.tour-container
+		display inline-block
+		vertical-align middle
+		margin-right 35px
+		width 80px
+		height 80px
+
+		svg
+			display block
+			width 100%
+
+			g
+				path
+					transition all 0.3s $transitionAnimation
+
+	.tour-text
+		display inline-block
+		vertical-align middle
+		font-size 42px
+		font-family "NarrowMedium"
+
+
+	&:hover
+		svg
+			g
+				path
+					fill #000
+/** //3d тур **/

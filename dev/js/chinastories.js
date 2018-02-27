@@ -757,6 +757,7 @@
 							obj.options.htmlContent = $("#step-form", obj.options.htmlContent);
 						},
 						afterImplant: function(obj) {
+							obj.options.htmlStructure.contentContainer.append('<button data-lazymodal-close class="lazy-modal-close lazy-modal-close-mobile"><span class="form-close"></span></button>');
 							CHINASTORIES.forms.init(obj.options.htmlContent.find(".form"));
 						},
 						customclass: "form-step-container",
