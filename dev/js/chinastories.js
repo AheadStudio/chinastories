@@ -811,6 +811,10 @@
 	CHINASTORIES.forms.init();
 	CHINASTORIES.animationPage.init();
 	CHINASTORIES.ajaxLoader();
-	CHINASTORIES.heightLogo();
+	$(window).on("load", function() {
+		setTimeout(function() {
+			CHINASTORIES.heightLogo();
+		}, 300);
+	})
 
 })(jQuery);
